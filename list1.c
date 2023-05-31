@@ -11,19 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-
-typedef struct s_node
-{
-	struct s_node	*next;
-	struct s_node	*prev;
-	int				value;
-}	t_node;
-
-typedef struct s_dlist
-{
-	t_node	*head;
-	int		size;
-}	t_dlist;
+#include "push_swap.h"
 
 t_dlist	*dlist_init(void)
 {
@@ -91,97 +79,4 @@ void	add_first_node(t_dlist *dlist, int value)
 		dlist->head = new_node;
 	}
 	dlist->size += 1;
-}
-
-void	delete_last_node(t_dlist *dlist)
-{
-	t_node	*temp_node;
-
-	if (dlist == NULL || dlist->head == NULL)
-		return ;
-	temp_node = dlist->head->prev;
-	dlist->head->prev = dlist->head->prev->prev;
-	dlist->head->prev->next = dlist->head;
-	free(temp_node);
-}
-
-void	delete_first_node(t_dlist *dlist)
-{
-	t_node *temp_node;
-
-	if (dlist == NULL || dlist->head == NULL)
-		return ;
-	temp_node = dlist->head;
-	dlist->head->prev->next = dlist->head->next;
-	dlist->head->next->prev = dlist->head->prev;
-	dlist->head = dlist->head->next;
-	free(temp_node);
-}
-
-void	dlist_print(t_dlist *dlist)
-{
-	int i;
-	t_node	*temp_node;
-
-	i = 0;
-	if (dlist == NULL || dlist->head == NULL)
-		return ;
-	temp_node = dlist->head;
-	while(i < dlist->size)
-	{
-		ft_printf("%d\n", temp_node->value);
-		temp_node = temp_node->next;
-		i++;
-	}
-}
-
-int		dlist_value_check(t_dlist *dlist, int value)
-{
-	int i;
-	t_node *next_temp;
-	t_node *prev_temp;
-
-	i = 0;
-	if (dlist == NULL || dlist->head == NULL)
-		return (0);
-	next_temp = dlist->head;
-	prev_temp = dlist->head->prev;
-	while (i < (dlist->size / 2) + 1)
-	{
-		if (next_temp->value == value || prev_temp->value == value)
-			return (1);
-		next_temp = next_temp->next;
-		prev_temp = prev_temp->prev;
-		i++;
-	}
-	return (0);
-}
-
-int main(int argc, char **argv)
-{
-	t_dlist	*stack_a;
-	char	**temp_arr;
-	int		i;
-	int		j;
-
-	i = 1;
-	stack_a = dlist_init();
-	while (i < argc)
-	{
-		j = 0;
-		temp_arr = ft_split(argv[i], ' ');
-		while (temp_arr[j])
-		{
-			if (dlist_value_check(stack_a, ft_atoi(temp_arr[j])))
-			{
-				ft_printf("Duplicate Value\n");
-				exit(1);
-			}
-			add_last_node(stack_a, ft_atoi(temp_arr[j]));
-			j++;
-		}
-		i++;
-	}
-	ft_printf("--------stack_a--------\n");
-	dlist_print(stack_a);
 }
