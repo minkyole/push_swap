@@ -160,18 +160,26 @@ int		dlist_value_check(t_dlist *dlist, int value)
 int main(int argc, char **argv)
 {
 	t_dlist	*stack_a;
+	char	**temp_arr;
 	int		i;
+	int		j;
 
 	i = 1;
 	stack_a = dlist_init();
 	while (i < argc)
 	{
-		if (dlist_value_check(stack_a, ft_atoi(argv[i])))
+		j = 0;
+		temp_arr = ft_split(argv[i], ' ');
+		while (temp_arr[j])
 		{
-			ft_printf("Duplicate Value\n");
-			exit(1);
+			if (dlist_value_check(stack_a, ft_atoi(temp_arr[j])))
+			{
+				ft_printf("Duplicate Value\n");
+				exit(1);
+			}
+			add_last_node(stack_a, ft_atoi(temp_arr[j]));
+			j++;
 		}
-		add_last_node(stack_a, ft_atoi(argv[i]));
 		i++;
 	}
 	ft_printf("--------stack_a--------\n");
