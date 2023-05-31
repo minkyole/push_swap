@@ -31,6 +31,11 @@ int main(int argc, char **argv)
 		temp_arr = ft_split(argv[i], ' ');
 		while (temp_arr[j])
 		{
+			if (is_strdigit(temp_arr[j]))
+			{
+				ft_printf("not digit\n");
+				exit(1);
+			}
 			temp_value = ft_atoi(temp_arr[j]);
 			if (temp_value > 2147483647 || temp_value < -2147483648)
 			{

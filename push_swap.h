@@ -41,6 +41,7 @@ void	rotate_stack(t_dlist *stack_a);
 void	rotate_stack_all(t_dlist *stack_a, t_dlist *stack_b);
 void	reverse_rotate_stack(t_dlist *stack_a);
 void	reverse_rotate_stack_all(t_dlist *stack_a, t_dlist *stack_b);
+int		is_strdigit(char *str);
 
 
 #endif
