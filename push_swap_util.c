@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	is_strdigit(char *str)
+int	is_str_digit(char *str)
 {
 	int i;
 

@@ -31,7 +31,7 @@ int main(int argc, char **argv)
 		temp_arr = ft_split(argv[i], ' ');
 		while (temp_arr[j])
 		{
-			if (is_strdigit(temp_arr[j]))
+			if (is_str_digit(temp_arr[j]))
 			{
 				ft_printf("not digit\n");
 				exit(1);
