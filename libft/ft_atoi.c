@@ -10,9 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
+#include <stdio.h>
+
+long long	ft_atoi(const char *str)
 {
-	int		num;
+	long long num;
 	int		plus;
 	char	*pstr;
 
@@ -30,6 +32,8 @@ int	ft_atoi(const char *str)
 	while (*pstr >= '0' && *pstr <= '9')
 	{
 		num = ((num * 10) + (*pstr - '0'));
+		if (num > 2147483647 || num < -2147483648)
+			return (num);
 		pstr++;
 	}
 	if (plus == -1)

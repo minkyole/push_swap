@@ -46,13 +46,18 @@ void	push_stack(t_dlist *stack_a, t_dlist *stack_b)
 
 void	rotate_stack(t_dlist *stack_a)
 {
-	add_last_node(stack_a, stack_a->head->value);
-	delete_first_node(stack_a);
-	ft_printf("rotate\n");
+	if (!(stack_a == NULL || stack_a->size <= 1))
+	{
+		add_last_node(stack_a, stack_a->head->value);
+		delete_first_node(stack_a);
+		ft_printf("rotate\n");
+	}
 }
 
 void	rotate_stack_all(t_dlist *stack_a, t_dlist *stack_b)
 {
-	rotate_stack(stack_a);
-	rotate_stack(stack_b);
+	if (!(stack_a == NULL || stack_a->size <= 1))
+		rotate_stack(stack_a);
+	if (!(stack_b == NULL || stack_b->size <= 1))
+		rotate_stack(stack_b);
 }

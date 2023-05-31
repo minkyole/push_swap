@@ -82,7 +82,7 @@ int				ft_isascii(int c);
 int				ft_isalpha(int c);
 int				ft_isalnum(int c);
 void			ft_bzero(void *s, unsigned long n);
-int				ft_atoi(const char *str);
+long long		ft_atoi(const char *str);
 void			*ft_calloc(size_t count, size_t size);
 char			*ft_strdup(const char *s1);
 char			*ft_substr(char const *s, unsigned int start, size_t len);

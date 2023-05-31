@@ -18,6 +18,7 @@ int main(int argc, char **argv)
 	t_dlist	*stack_a;
 	t_dlist *stack_b;
 	char	**temp_arr;
+	long long temp_value;
 	int		i;
 	int		j;
 
@@ -30,12 +31,18 @@ int main(int argc, char **argv)
 		temp_arr = ft_split(argv[i], ' ');
 		while (temp_arr[j])
 		{
-			if (dlist_value_check(stack_a, ft_atoi(temp_arr[j])))
+			temp_value = ft_atoi(temp_arr[j]);
+			if (temp_value > 2147483647 || temp_value < -2147483648)
+			{
+				ft_printf("int min, max over\n");
+				exit(1);
+			}
+			if (dlist_value_check(stack_a, temp_value))
 			{
 				ft_printf("Duplicate Value\n");
 				exit(1);
 			}
-			add_last_node(stack_a, ft_atoi(temp_arr[j]));
+			add_last_node(stack_a, temp_value);
 			j++;
 		}
 		i++;
