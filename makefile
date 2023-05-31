@@ -28,7 +28,7 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = push_swap
 LIBFT = ./libft/libft.a
 LIBFT_DIR = libft
-SRCS = list1.c list2.c command1.c command2.c main.c
+SRCS = list1.c list2.c command1.c command2.c main.c push_swap_util.c
 OBJS = $(SRCS:.c=.o)
 
 .PHONY : clean fclean re all bonus

@@ -50,6 +50,11 @@ int main(int argc, char **argv)
 			add_last_node(stack_a, temp_value);
 			j++;
 		}
+		if (j == 0)
+		{
+			ft_printf("not digit\n");
+			exit(1);
+		}
 		i++;
 	}
 	ft_printf("--------stack_a--------\n");
