@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "push_swap.h"
+#include "libft.h"
 
 void	swap_stack(t_dlist	*dlist)
 {
