@@ -26,10 +26,13 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = push_swap
+BNAME = checker
 LIBFT = ./libft/libft.a
 LIBFT_DIR = libft
 SRCS = list1.c list2.c command1.c command2.c main.c push_swap_util.c
+BSRCS = checker.c list1.c list2.c command1.c command2.c push_swap_util.c
 OBJS = $(SRCS:.c=.o)
+BOBJS = $(BSRCS:.c=.o)
 
 .PHONY : clean fclean re all bonus
 
@@ -37,7 +40,7 @@ $(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $^ -o $@
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(BOBJS)
 	make -C $(LIBFT_DIR) fclean
 
 fclean:
@@ -48,10 +51,15 @@ re:
 	$(MAKE) fclean
 	$(MAKE) all
 
+bonus: $(BNAME)
+
+$(BNAME): $(BOBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $^ -o $@
+
 %.o: %.c
 	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -c $^ -o $@
 
 $(LIBFT):
 	make -C $(LIBFT_DIR) all
 
-all: $(NAME)
+all: $(NAME) $(BNAME)

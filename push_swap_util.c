@@ -19,7 +19,9 @@ int	is_str_digit(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (!ft_isdigit(str[i]))
+		if (ft_isdigit(str[i]) || str[i] == '+' || str[i] == '-')
+			;
+		else
 			return (1);
 		i++;
 	}

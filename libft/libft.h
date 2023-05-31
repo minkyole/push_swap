@@ -67,7 +67,7 @@ int				ft_tolower(int c);
 char			*ft_strrchr(const char *s, int c);
 char			*ft_strnstr(const char *haystack,
 					const char *needle, size_t len);
-unsigned long	ft_strlen(const char *s);
+size_t			ft_strlen(const char *s);
 size_t			ft_strlcpy(char *dest, char *src, size_t size);
 size_t			ft_strlcat(char *dest, char *src, size_t size);
 char			*ft_strchr(const char *s, int c);

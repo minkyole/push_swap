@@ -39,7 +39,7 @@ int main(int argc, char **argv)
 			temp_value = ft_atoi(temp_arr[j]);
 			if (temp_value > 2147483647 || temp_value < -2147483648)
 			{
-				ft_printf("int min, max over\n");
+				ft_printf("input error\n");
 				exit(1);
 			}
 			if (dlist_value_check(stack_a, temp_value))

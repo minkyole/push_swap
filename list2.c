@@ -17,11 +17,23 @@ void	delete_last_node(t_dlist *dlist)
 {
 	t_node	*temp_node;
 
+	temp_node = dlist->head;
 	if (dlist == NULL || dlist->head == NULL)
 		return ;
-	temp_node = dlist->head->prev;
-	dlist->head->prev = dlist->head->prev->prev;
-	dlist->head->prev->next = dlist->head;
+	if (dlist->head->next == dlist->head)
+		dlist->head = NULL;
+	else if (dlist->head->next == dlist->head->prev)
+	{
+		temp_node = dlist->head->next;
+		dlist->head->next = dlist->head;
+		dlist->head->prev = dlist->head;
+	}
+	else
+	{
+		temp_node = dlist->head->prev;
+		dlist->head->prev = dlist->head->prev->prev;
+		dlist->head->prev->next = dlist->head;
+	}
 	free(temp_node);
 	dlist->size -= 1;
 }

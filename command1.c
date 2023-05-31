@@ -13,18 +13,19 @@
 #include "push_swap.h"
 #include "libft.h"
 
-void	swap_stack(t_dlist	*dlist)
+void	swap_stack(t_dlist	*stack_a)
 {
 	t_node	*temp_node;
 
-	if (dlist->size <= 1)
+	if (stack_a->size <= 1)
 		return ;
-	temp_node = dlist->head->next;
-	temp_node->prev = dlist->head->prev;
-	dlist->head->next = dlist->head->next->next;
-	dlist->head->prev = temp_node;
-	temp_node->next = dlist->head;
-	dlist->head = temp_node;
+	temp_node = stack_a->head->next;
+	temp_node->prev = stack_a->head->prev;
+	temp_node->next->prev = stack_a->head;
+	stack_a->head->next = temp_node->next;
+	stack_a->head->prev = temp_node;
+	temp_node->next = stack_a->head;
+	stack_a->head = temp_node;
 	ft_printf("swap\n");
 }
 

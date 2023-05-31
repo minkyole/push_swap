@@ -29,6 +29,8 @@ long long	ft_atoi(const char *str)
 			plus = plus * -1;
 		pstr++;
 	}
+	if (!(*pstr >= '0' && *pstr <= '9'))
+		return (2147483648);
 	while (*pstr >= '0' && *pstr <= '9')
 	{
 		num = ((num * 10) + (*pstr - '0'));
@@ -36,7 +38,7 @@ long long	ft_atoi(const char *str)
 			return (num);
 		pstr++;
 	}
-	if (plus == -1)
-		num = num * -1;
-	return (num);
+	if (*pstr != '\0')
+		return (2147483648);
+	return (num * plus);
 }
