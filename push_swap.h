@@ -34,14 +34,16 @@ void	delete_last_node(t_dlist *dlist);
 void	delete_first_node(t_dlist *dlist);
 void	dlist_print(t_dlist *dlist);
 int		dlist_value_check(t_dlist *dlist, int value);
-void	swap_stack(t_dlist	*dlist);
+void	swap_stack(t_dlist	*stack_a, int flag);
 void	swap_stack_all(t_dlist *stack_a, t_dlist *stack_b);
-void	push_stack(t_dlist *stack_a, t_dlist *stack_b);
-void	rotate_stack(t_dlist *stack_a);
+void	push_stack(t_dlist *stack_a, t_dlist *stack_b, int flag);
+void	rotate_stack(t_dlist *stack_a, int flag);
 void	rotate_stack_all(t_dlist *stack_a, t_dlist *stack_b);
-void	reverse_rotate_stack(t_dlist *stack_a);
+void	reverse_rotate_stack(t_dlist *stack_a, int flag);
 void	reverse_rotate_stack_all(t_dlist *stack_a, t_dlist *stack_b);
 int		is_str_digit(char *str);
-
+void	sort_stack(t_dlist *stack_a, t_dlist *stack_b);
+void	sort_two_size(t_dlist *stack_a);
+void	sort_three_size(t_dlist *stack_a);
 
 #endif

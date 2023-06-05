@@ -10,19 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 #include "libft.h"
 
-void	swap_stack(t_dlist	*stack_a, int flag)
+void	swap_stack(t_dlist	*stack_a)
 {
 	t_node	*temp_node;
 
-	if (flag == 1)
-		ft_printf("sa\n");
-	else if (flag == 2)
-		ft_printf("sb\n");
-	else if (flag == 3)
-		;
 	if (stack_a->size <= 1)
 		return ;
 	temp_node = stack_a->head->next;
@@ -32,35 +26,25 @@ void	swap_stack(t_dlist	*stack_a, int flag)
 	stack_a->head->prev = temp_node;
 	temp_node->next = stack_a->head;
 	stack_a->head = temp_node;
+	ft_printf("test\n");
 }
 
 void	swap_stack_all(t_dlist *stack_a, t_dlist *stack_b)
 {
-	ft_printf("ss\n");
-	swap_stack(stack_a, 3);
-	swap_stack(stack_b, 3);
+	swap_stack(stack_a);
+	swap_stack(stack_b);
 }
 
-void	push_stack(t_dlist *stack_a, t_dlist *stack_b, int flag)
+void	push_stack(t_dlist *stack_a, t_dlist *stack_b)
 {
-	if (flag == 1)
-		ft_printf("pa\n");
-	else if (flag == 2)
-		ft_printf("pb\n");
 	if (stack_b->size == 0)
 		return ;
 	add_first_node(stack_a, stack_b->head->value);
 	delete_first_node(stack_b);
 }
 
-void	rotate_stack(t_dlist *stack_a, int flag)
+void	rotate_stack(t_dlist *stack_a)
 {
-	if (flag == 1)
-		ft_printf("ra\n");
-	else if (flag == 2)
-		ft_printf("rb\n");
-	else if (flag == 3)
-		;
 	if (!(stack_a == NULL || stack_a->size <= 1))
 	{
 		add_last_node(stack_a, stack_a->head->value);
@@ -70,9 +54,8 @@ void	rotate_stack(t_dlist *stack_a, int flag)
 
 void	rotate_stack_all(t_dlist *stack_a, t_dlist *stack_b)
 {
-	ft_printf("rr\n");
 	if (!(stack_a == NULL || stack_a->size <= 1))
-		rotate_stack(stack_a, 3);
+		rotate_stack(stack_a);
 	if (!(stack_b == NULL || stack_b->size <= 1))
-		rotate_stack(stack_b, 3);
+		rotate_stack(stack_b);
 }

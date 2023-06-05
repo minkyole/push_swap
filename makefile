@@ -29,8 +29,8 @@ NAME = push_swap
 BNAME = checker
 LIBFT = ./libft/libft.a
 LIBFT_DIR = libft
-SRCS = list1.c list2.c command1.c command2.c main.c push_swap_util.c
-BSRCS = checker.c list1.c list2.c command1.c command2.c push_swap_util.c
+SRCS = list1.c list2.c command1.c command2.c main.c push_swap_util.c sort.c
+BSRCS = checker_bonus.c list1_bonus.c list2_bonus.c command1_bonus.c command2_bonus.c push_swap_util_bonus.c
 OBJS = $(SRCS:.c=.o)
 BOBJS = $(BSRCS:.c=.o)
 

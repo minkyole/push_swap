@@ -57,28 +57,14 @@ int main(int argc, char **argv)
 		}
 		i++;
 	}
-	ft_printf("--------stack_a--------\n");
-	dlist_print(stack_a);
-	ft_printf("--------stack_b--------\n");
-	dlist_print(stack_b);
-	swap_stack(stack_a);
-	ft_printf("--------stack_a--------\n");
-	dlist_print(stack_a);
-	ft_printf("--------stack_b--------\n");
-	dlist_print(stack_b);
-	push_stack(stack_b, stack_a);
-	ft_printf("--------stack_a--------\n");
-	dlist_print(stack_a);
-	ft_printf("--------stack_b--------\n");
-	dlist_print(stack_b);
-	rotate_stack(stack_a);
-	ft_printf("--------stack_a--------\n");
-	dlist_print(stack_a);
-	ft_printf("--------stack_b--------\n");
-	dlist_print(stack_b);
-	reverse_rotate_stack(stack_a);
-	ft_printf("--------stack_a--------\n");
-	dlist_print(stack_a);
-	ft_printf("--------stack_b--------\n");
-	dlist_print(stack_b);
+	//ft_printf("--------stack_a--------\n");
+//	dlist_print(stack_a);
+	//ft_printf("--------stack_b--------\n");
+//	dlist_print(stack_b);
+	sort_stack(stack_a, stack_b);
+//	ft_printf("--------stack_a--------\n");
+//	dlist_print(stack_a);
+//	ft_printf("--------stack_b--------\n");
+//	dlist_print(stack_b);
+	
 }
