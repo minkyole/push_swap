@@ -46,4 +46,7 @@ void	sort_stack(t_dlist *stack_a, t_dlist *stack_b);
 void	sort_two_size(t_dlist *stack_a);
 void	sort_three_size(t_dlist *stack_a);
 
+void quick_sort(t_dlist *stack_a, t_dlist *stack_b);
+int init_mid(t_dlist *stack_a);
+
 #endif
