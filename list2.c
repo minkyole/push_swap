@@ -67,7 +67,8 @@ void	dlist_print(t_dlist *dlist)
 	temp_node = dlist->head;
 	while(i < dlist->size)
 	{
-		ft_printf("%d 주소 %p prev %p value %d next %p value %d next next %p value %d\n", temp_node->value, temp_node, temp_node->prev ,temp_node->prev->value, temp_node->next,temp_node->next->value,temp_node->next->next ,temp_node->next->next->value);
+		ft_printf("%d\n", temp_node->value);
+		//ft_printf("%d 주소 %p prev %p value %d next %p value %d next next %p value %d\n", temp_node->value, temp_node, temp_node->prev ,temp_node->prev->value, temp_node->next,temp_node->next->value,temp_node->next->next ,temp_node->next->next->value);
 		temp_node = temp_node->next;
 		i++;
 	}

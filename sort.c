@@ -68,18 +68,22 @@ int init_mid(t_dlist *stack_a, int size)
 	return (temp_stack[(idx - 1) / 2]);
 }
 
-void quick_sort_a(t_dlist *stack_a, t_dlist *stack_b, int *pivot_arr, int *pivot_idx, int size, int flag)
+void quick_sort_a(t_dlist *stack_a, t_dlist *stack_b, int *pivot_arr, int *pivot_idx, int size, int flag, int upper, int first)
 {
 	int mid;
 	int i;
 	int push_cnt;
 	int	rotate_cnt;
+	int temp_first;
 
 	i = 0;
+	temp_first = first;
+	first++;
 	rotate_cnt = 0;
 	push_cnt = 0;
 	if (size <= 1)
 		return ;
+
 	else if (size == 2)
 	{
 		ft_printf("-----sort_a하는중-----\n");
@@ -88,26 +92,34 @@ void quick_sort_a(t_dlist *stack_a, t_dlist *stack_b, int *pivot_arr, int *pivot
 		ft_printf("-----stack_b sort전-----\n");
 		dlist_print(stack_b);
 		ft_printf("-----size %d--------\n", size);
+	//	if (upper == 1)
 		sort_two_size(stack_a, 1);
+	//	else if (upper == 0)
+	//		sort_two_size(stack_a, 3);
 		ft_printf("-----stack_a sort후-----\n");
 		dlist_print(stack_a);
 		ft_printf("-----stack_b sort후-----\n");
 		dlist_print(stack_b);
-		ft_printf("-----size %d--------\n", size);
+		ft_printf("-----size %d upper %d--------\n", size, upper);
 		return ;
 	}
 	ft_printf("-----stack_a-----\n");
 	dlist_print(stack_a);
 	ft_printf("-----stack_b-----\n");
 	dlist_print(stack_b);
-	ft_printf("-----size %d--------\n", size);
+	ft_printf("-----size %d upper %d-------\n", size, upper);
 	mid = init_mid(stack_a, size);
 	pivot_arr[*pivot_idx] = mid;
 	*pivot_idx += 1;
 
 	while (i < size)
 	{
-		if (stack_a->head->value < mid)
+		if (upper == 1 && stack_a->head->value < mid)
+		{
+			push_stack(stack_b, stack_a, 2);
+			push_cnt++;
+		}
+		else if (upper == 0 && stack_a->head->value > mid)
 		{
 			push_stack(stack_b, stack_a, 2);
 			push_cnt++;
@@ -126,8 +138,14 @@ void quick_sort_a(t_dlist *stack_a, t_dlist *stack_b, int *pivot_arr, int *pivot
 		i++;
 	}
 	reverse_rotate_stack(stack_b, 2);
-	quick_sort_a(stack_a, stack_b, pivot_arr, pivot_idx, size - push_cnt, 1);
-	quick_sort_b(stack_a, stack_b, pivot_arr, pivot_idx, push_cnt);
+	quick_sort_a(stack_a, stack_b, pivot_arr, pivot_idx, size - push_cnt, 1, upper, first);
+	if (temp_first == 1)
+	{
+		ft_printf("\n\n\nfirst 1호출\n\n\n");
+		quick_sort_b(stack_a, stack_b, pivot_arr, pivot_idx, push_cnt, 0, first);
+	}
+	else
+		quick_sort_b(stack_a, stack_b, pivot_arr, pivot_idx, push_cnt, upper, first);
 	ft_printf("-----stack_a-----\n");
 	dlist_print(stack_a);
 	ft_printf("-----stack_b-----\n");
@@ -149,7 +167,7 @@ void quick_sort_a(t_dlist *stack_a, t_dlist *stack_b, int *pivot_arr, int *pivot
 	dlist_print(stack_b);
 }
 
-void quick_sort_b(t_dlist *stack_a, t_dlist *stack_b, int *pivot_arr, int *pivot_idx, int size)
+void quick_sort_b(t_dlist *stack_a, t_dlist *stack_b, int *pivot_arr, int *pivot_idx, int size, int upper, int first)
 {
 	int mid;
 	int i;
@@ -162,6 +180,7 @@ void quick_sort_b(t_dlist *stack_a, t_dlist *stack_b, int *pivot_arr, int *pivot
 	rotate_cnt = 0;
 	if (size <= 1)
 		return ;
+
 	else if (size == 2)
 	{
 		ft_printf("-----sort_b하는중-----\n");
@@ -170,14 +189,18 @@ void quick_sort_b(t_dlist *stack_a, t_dlist *stack_b, int *pivot_arr, int *pivot
 		ft_printf("-----stack_b sort전-----\n");
 		dlist_print(stack_b);
 		ft_printf("-----size %d--------\n", size);
-		sort_two_size(stack_b, 2);
+		if (upper == 1)
+		sort_two_size(stack_b, 4);
+		else if (upper == 0)
+			sort_two_size(stack_b, 2);
 		ft_printf("-----stack_a sort후-----\n");
 		dlist_print(stack_a);
 		ft_printf("-----stack_b sort후-----\n");
 		dlist_print(stack_b);
-		ft_printf("-----size %d--------\n", size);
+		ft_printf("-----size %d upper %d--------\n", size, upper);
 		return ;
 	}
+	
 	if (size == stack_b->size)
 		rotate_flag = 1;
 	else
@@ -186,14 +209,19 @@ void quick_sort_b(t_dlist *stack_a, t_dlist *stack_b, int *pivot_arr, int *pivot
 	dlist_print(stack_a);
 	ft_printf("-----stack_b-----\n");
 	dlist_print(stack_b);
-	ft_printf("-----size %d--------\n", size);
+	ft_printf("-----size %d upper %d-------\n", size, upper);
 	mid = init_mid(stack_b, size);
 	pivot_arr[*pivot_idx] = mid;
 	*pivot_idx += 1;
 
 	while (i < size)
 	{
-		if (stack_b->head->value < mid)
+		if (upper == 1 && stack_b->head->value < mid)
+		{
+			push_stack(stack_a, stack_b, 1);
+			push_cnt++;
+		}
+		else if (upper == 0 && stack_b->head->value > mid)
 		{
 			push_stack(stack_a, stack_b, 1);
 			push_cnt++;
@@ -216,8 +244,8 @@ void quick_sort_b(t_dlist *stack_a, t_dlist *stack_b, int *pivot_arr, int *pivot
 //	ft_printf("quick_sort_a, %d\n", push_cnt);
 //	ft_printf("quick_sort_b, %d\n", size - push_cnt);
 //	ft_printf("-------------------\n");
-	quick_sort_a(stack_a, stack_b, pivot_arr, pivot_idx, push_cnt, 2);
-	quick_sort_b(stack_a, stack_b, pivot_arr, pivot_idx, size - push_cnt);
+	quick_sort_a(stack_a, stack_b, pivot_arr, pivot_idx, push_cnt, 2, upper, first);
+	quick_sort_b(stack_a, stack_b, pivot_arr, pivot_idx, size - push_cnt, upper, first);
 	ft_printf("-----stack_a-----\n");
 	dlist_print(stack_a);
 	ft_printf("-----stack_b-----\n");
@@ -258,7 +286,9 @@ void	sort_stack(t_dlist *stack_a, t_dlist *stack_b)
 {
 	int *pivot_arr;
 	int	pivot_idx;
+	int	first;
 
+	first = 1;
 	pivot_idx = 0;
 	pivot_arr = malloc(sizeof(int) * stack_a->size);
 	if (stack_a->size <= 1)
@@ -269,7 +299,7 @@ void	sort_stack(t_dlist *stack_a, t_dlist *stack_b)
 		sort_three_size(stack_a);
 	else
 	{
-		quick_sort_a(stack_a, stack_b, pivot_arr, &pivot_idx, stack_a->size, 1);
+		quick_sort_a(stack_a, stack_b, pivot_arr, &pivot_idx, stack_a->size, 1, 1, first);
 		ft_printf("-----stack_a-----\n");
 		dlist_print(stack_a);
 		ft_printf("-----stack_b-----\n");
@@ -284,9 +314,19 @@ void	sort_two_size(t_dlist *stack_a, int flag)
 		if (stack_a->head->value > stack_a->head->next->value)
 			swap_stack(stack_a, 1);
 	}
-	else
+	else if (flag == 2)
 	{
 		if (stack_a->head->value > stack_a->head->next->value)
+			swap_stack(stack_a, 2);
+	}
+	else if (flag == 3)
+	{
+		if (stack_a->head->value < stack_a->head->next->value)
+			swap_stack(stack_a, 1);
+	}
+	else if (flag == 4)
+	{
+		if (stack_a->head->value < stack_a->head->next->value)
 			swap_stack(stack_a, 2);
 	}
 }
