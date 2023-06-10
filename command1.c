@@ -25,6 +25,11 @@ void	swap_stack(t_dlist	*stack_a, int flag)
 		;
 	if (stack_a->size <= 1)
 		return ;
+	else if (stack_a->size == 2)
+	{
+		stack_a->head = stack_a->head->next;
+		return ;
+	}
 	temp_node = stack_a->head->next;
 	temp_node->prev = stack_a->head->prev;
 	temp_node->next->prev = stack_a->head;
