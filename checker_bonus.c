@@ -111,11 +111,11 @@ void	command_input(t_dlist *stack_a, t_dlist *stack_b)
 
 	while (1)
 	{
-		if (stack_b != NULL && stack_b->head != NULL)
-		{
-			ft_printf("%d %d %d\n", stack_b->head, stack_b->head->next, stack_b->head->next->next);
-			ft_printf("%d %d %d\n", stack_b->head, stack_b->head->prev, stack_b->head->prev->prev);
-		}
+		//if (stack_b != NULL && stack_b->head != NULL)
+		//{
+		//	ft_printf("%d %d %d\n", stack_b->head, stack_b->head->next, stack_b->head->next->next);
+		//	ft_printf("%d %d %d\n", stack_b->head, stack_b->head->prev, stack_b->head->prev->prev);
+		//}
 		buff = get_next_line(0);
 		if (buff == NULL)
 			break;
@@ -130,6 +130,10 @@ void	command_input(t_dlist *stack_a, t_dlist *stack_b)
 			ft_printf("input Error2\n");
 			exit(1);
 		}
+		ft_printf("--------stack_a--------\n");
+		dlist_print(stack_a);
+		ft_printf("--------stack_b--------\n");
+		dlist_print(stack_b);
 		free(buff);
 	}
 	check_sort(stack_a, stack_b);
