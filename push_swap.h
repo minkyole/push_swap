@@ -44,10 +44,15 @@ void	reverse_rotate_stack_all(t_dlist *stack_a, t_dlist *stack_b);
 int		is_str_digit(char *str);
 void	sort_stack(t_dlist *stack_a, t_dlist *stack_b);
 void	sort_two_size(t_dlist *stack_a, int flag);
-void	sort_three_size(t_dlist *stack_a);
+void	sort_three_size_lower(t_dlist *stack_a, int flag);
+void	sort_three_size_upper(t_dlist *stack_a, int flag);
 
 int init_mid(t_dlist *stack_a, int size);
-void quick_sort_a(t_dlist *stack_a, t_dlist *stack_b, int *pivot_arr, int *pivot_idx, int size, int flag, int upper, int first);
-void quick_sort_b(t_dlist *stack_a, t_dlist *stack_b, int *pivot_arr, int *pivot_idx, int size, int upper, int first);
+void quick_sort_a(t_dlist *stack_a, t_dlist *stack_b, int size, int upper);
+void quick_sort_b(t_dlist *stack_a, t_dlist *stack_b, int size, int upper);
 int check_size(t_dlist *stack_b, int *pivot_arr, int pivot_idx);
+void	quick_sort_three_size_upper(t_dlist *stack_a, t_dlist *stack_b, int flag);
+void	quick_sort_three_size_lower(t_dlist *stack_a, t_dlist *stack_b, int flag);
+void	quick_sort_four_size_upper(t_dlist *stack_a, t_dlist *stack_b, int flag);
+void	quick_sort_four_size_lower(t_dlist *stack_a, t_dlist *stack_b, int flag);
 #endif

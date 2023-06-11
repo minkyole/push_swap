@@ -68,17 +68,14 @@ int init_mid(t_dlist *stack_a, int size)
 	return (temp_stack[(idx - 1) / 2]);
 }
 
-void quick_sort_a(t_dlist *stack_a, t_dlist *stack_b, int *pivot_arr, int *pivot_idx, int size, int flag, int upper, int first)
+void quick_sort_a(t_dlist *stack_a, t_dlist *stack_b, int size, int upper)
 {
 	int mid;
 	int i;
 	int push_cnt;
 	int	rotate_cnt;
-	int temp_first;
 
 	i = 0;
-	temp_first = first;
-	first++;
 	rotate_cnt = 0;
 	push_cnt = 0;
 	if (size <= 1)
@@ -103,31 +100,43 @@ void quick_sort_a(t_dlist *stack_a, t_dlist *stack_b, int *pivot_arr, int *pivot
 		// ft_printf("-----size %d upper %d--------\n", size, upper);
 		return ;
 	}
+	else if (size == 3)
+	{
+		if (stack_a->size == 3 && upper % 2 == 1)
+			sort_three_size_upper(stack_a, 1);
+		else if (stack_a->size == 3 && upper % 2 == 0)
+			sort_three_size_lower(stack_a, 1);
+		else if (upper % 2 == 1)
+			quick_sort_three_size_upper(stack_a, stack_b, 1);
+		else if (upper % 2 == 0)
+			quick_sort_three_size_lower(stack_a, stack_b, 1);
+		return ;
+	}
+	else if (size == 4)
+	{
+		if (upper % 2 == 1)
+			quick_sort_four_size_upper(stack_a, stack_b, 1);
+		else if (upper % 2 == 0)
+			quick_sort_four_size_lower(stack_a, stack_b, 1);
+		return ;
+	}
 	// ft_printf("-----stack_a-----\n");
 	// dlist_print(stack_a);
 	// ft_printf("-----stack_b-----\n");
 	// dlist_print(stack_b);
 	// ft_printf("-----size %d upper %d-------\n", size, upper);
 	mid = init_mid(stack_a, size);
-	pivot_arr[*pivot_idx] = mid;
-	*pivot_idx += 1;
 
 	while (i < size)
 	{
-		if (upper % 2 == 1 && stack_a->head->value < mid)
+		if (upper % 2 == 1 && stack_a->head->value <= mid)
 		{
 			push_stack(stack_b, stack_a, 2);
 			push_cnt++;
 		}
-		else if (upper % 2 == 0 && stack_a->head->value > mid)
+		else if (upper % 2 == 0 && stack_a->head->value >= mid)
 		{
 			push_stack(stack_b, stack_a, 2);
-			push_cnt++;
-		}
-		else if (stack_a->head->value == mid)
-		{
-			push_stack(stack_b, stack_a, 2);
-			rotate_stack(stack_b, 2);
 			push_cnt++;
 		}
 		else
@@ -137,25 +146,18 @@ void quick_sort_a(t_dlist *stack_a, t_dlist *stack_b, int *pivot_arr, int *pivot
 		}
 		i++;
 	}
-	reverse_rotate_stack(stack_b, 2);
-	if (upper != 1 && upper % 2 == 1)
+	while (upper != 1 && rotate_cnt != 0)
 	{
-		while (rotate_cnt != 0 && flag == 2)
-		{
-			reverse_rotate_stack(stack_a, 1);
-			rotate_cnt--;
-		}
+		reverse_rotate_stack(stack_a, 1);
+		rotate_cnt--;
 	}
 	// ft_printf("-----stack_a-----\n");
 	// dlist_print(stack_a);
 	// ft_printf("-----stack_b-----\n");
 	// dlist_print(stack_b);
 	// ft_printf("-----rotate_cnt %d-----\n", rotate_cnt);
-	if (flag == 2)
-		quick_sort_a(stack_a, stack_b, pivot_arr, pivot_idx, size - push_cnt, 2, upper, first);
-	else
-		quick_sort_a(stack_a, stack_b, pivot_arr, pivot_idx, size - push_cnt, 1, upper, first);
-	quick_sort_b(stack_a, stack_b, pivot_arr, pivot_idx, push_cnt, upper + 1, first);
+	quick_sort_a(stack_a, stack_b, size - push_cnt, upper);
+	quick_sort_b(stack_a, stack_b, push_cnt, upper + 1);
 	// ft_printf("-----rotate_cnt %d flag %d-----\n", rotate_cnt, flag);
 	// ft_printf("-----stack_a-----\n");
 	// dlist_print(stack_a);
@@ -167,24 +169,18 @@ void quick_sort_a(t_dlist *stack_a, t_dlist *stack_b, int *pivot_arr, int *pivot
 		push_stack(stack_a, stack_b, 1);
 		push_cnt--;
 	}
-	while (rotate_cnt != 0 && flag == 2)
-	{
-		reverse_rotate_stack(stack_a, 1);
-		rotate_cnt--;
-	}
 	// ft_printf("-----stack_a-----\n");
 	// dlist_print(stack_a);
 	// ft_printf("-----stack_b-----\n");
 	// dlist_print(stack_b);
 }
 
-void quick_sort_b(t_dlist *stack_a, t_dlist *stack_b, int *pivot_arr, int *pivot_idx, int size, int upper, int first)
+void quick_sort_b(t_dlist *stack_a, t_dlist *stack_b, int size, int upper)
 {
 	int mid;
 	int i;
 	int push_cnt;
 	int	rotate_cnt;
-	int rotate_flag;
 
 	i = 0;
 	push_cnt = 0;
@@ -201,7 +197,7 @@ void quick_sort_b(t_dlist *stack_a, t_dlist *stack_b, int *pivot_arr, int *pivot
 		// dlist_print(stack_b);
 		// ft_printf("-----size %d--------\n", size);
 		if (upper % 2 == 1)
-		sort_two_size(stack_b, 2);
+			sort_two_size(stack_b, 2);
 		else if (upper % 2 == 0)
 			sort_two_size(stack_b, 4);
 		// ft_printf("-----stack_a sort후-----\n");
@@ -211,36 +207,44 @@ void quick_sort_b(t_dlist *stack_a, t_dlist *stack_b, int *pivot_arr, int *pivot
 		// ft_printf("-----size %d upper %d--------\n", size, upper);
 		return ;
 	}
-	
-	if (size == stack_b->size)
-		rotate_flag = 1;
-	else
-		rotate_flag = 2;
+	else if (size == 3)
+	{
+		if (stack_b->size == 3 && upper % 2 == 1)
+			sort_three_size_upper(stack_b, 2);
+		else if (stack_b->size == 3 && upper % 2 == 0)
+			sort_three_size_lower(stack_b, 2);
+		else if (upper % 2 == 1)
+			quick_sort_three_size_upper(stack_b, stack_a, 2);
+		else if (upper % 2 == 0)
+			quick_sort_three_size_lower(stack_b, stack_a, 2);
+		return ;
+	}
+	else if (size == 4)
+	{
+		if (upper % 2 == 1)
+			quick_sort_four_size_upper(stack_b, stack_a, 2);
+		else if (upper % 2 == 0)
+			quick_sort_four_size_lower(stack_b, stack_a, 2);
+		return ;
+	}
+
 	// ft_printf("-----stack_a-----\n");
 	// dlist_print(stack_a);
 	// ft_printf("-----stack_b-----\n");
 	// dlist_print(stack_b);
 	// ft_printf("-----size %d upper %d-------\n", size, upper);
 	mid = init_mid(stack_b, size);
-	pivot_arr[*pivot_idx] = mid;
-	*pivot_idx += 1;
 
 	while (i < size)
 	{
-		if (upper % 2 == 1 && stack_b->head->value < mid)
+		if (upper % 2 == 1 && stack_b->head->value <= mid)
 		{
 			push_stack(stack_a, stack_b, 1);
 			push_cnt++;
 		}
-		else if (upper % 2 == 0 && stack_b->head->value > mid)
+		else if (upper % 2 == 0 && stack_b->head->value >= mid)
 		{
 			push_stack(stack_a, stack_b, 1);
-			push_cnt++;
-		}
-		else if (stack_b->head->value == mid)
-		{
-			push_stack(stack_a, stack_b, 1);
-			rotate_stack(stack_a, 1);
 			push_cnt++;
 		}
 		else
@@ -250,83 +254,55 @@ void quick_sort_b(t_dlist *stack_a, t_dlist *stack_b, int *pivot_arr, int *pivot
 		}
 		i++;
 	}
-	reverse_rotate_stack(stack_a, 1);
 	// ft_printf("-----stack_a-----\n");
 	// dlist_print(stack_a);
 	// ft_printf("-----stack_b-----\n");
 	// dlist_print(stack_b);
-	if (upper % 2 == 0)
+	while (rotate_cnt != 0)
 	{
-		while (rotate_cnt != 0)
-		{
-			reverse_rotate_stack(stack_b, 2);
-			rotate_cnt--;
-		}
+		reverse_rotate_stack(stack_b, 2);
+		rotate_cnt--;
 	}
-	quick_sort_a(stack_a, stack_b, pivot_arr, pivot_idx, push_cnt, 2, upper + 1, first);
-	quick_sort_b(stack_a, stack_b, pivot_arr, pivot_idx, size - push_cnt, upper, first);
+	quick_sort_a(stack_a, stack_b, push_cnt, upper + 1);
+	quick_sort_b(stack_a, stack_b, size - push_cnt, upper);
 	// ft_printf("-----stack_a-----\n");
 	// dlist_print(stack_a);
 	// ft_printf("-----stack_b-----\n");
 	// dlist_print(stack_b);
-	if (upper % 2 == 0)
-	{
-		while (rotate_cnt != 0)
-		{
-			reverse_rotate_stack(stack_b, 2);
-			rotate_cnt--;
-		}
-	}
 	while (push_cnt != 0)
 	{
 		// ft_printf("push stackA -> stack_b 하는중\n");
 		push_stack(stack_b, stack_a, 2);
 		push_cnt--;
 	}
-	while (rotate_flag == 2 && rotate_cnt != 0)
-	{
-		reverse_rotate_stack(stack_b, 2);
-		rotate_cnt--;
-	}
 	// ft_printf("-----stack_a-----\n");
 	// dlist_print(stack_a);
 	// ft_printf("-----stack_b-----\n");
 	// dlist_print(stack_b);
 }
 
-int check_size(t_dlist *stack_b, int *pivot_arr, int pivot_idx)
-{
-	int i = 0;
-	t_node *temp_node;
-
-	temp_node = stack_b->head;
-//	ft_printf("pivot_idx %d pivot_arr %d\n", pivot_idx, pivot_arr[pivot_idx]);
-	while (temp_node->value != pivot_arr[pivot_idx] && i < stack_b->size)
-	{
-		temp_node = temp_node->next;
-		i++;
-	}
-	return (i);
-}
-
 void	sort_stack(t_dlist *stack_a, t_dlist *stack_b)
 {
-	int *pivot_arr;
-	int	pivot_idx;
 	int	first;
 
 	first = 1;
-	pivot_idx = 0;
-	pivot_arr = malloc(sizeof(int) * stack_a->size);
 	if (stack_a->size <= 1)
 		return ;
 	else if (stack_a->size == 2)
 		sort_two_size(stack_a, 1);
 	else if (stack_a->size == 3)
-		sort_three_size(stack_a);
+		sort_three_size_upper(stack_a, 1);
+	else if (stack_a->size == 4)
+	{
+		push_stack(stack_b, stack_a, 2);
+		push_stack(stack_b, stack_a, 2);
+		push_stack(stack_b, stack_a, 2);
+		push_stack(stack_b, stack_a, 2);
+		quick_sort_four_size_lower(stack_b, stack_a, 2);
+	}
 	else
 	{
-		quick_sort_a(stack_a, stack_b, pivot_arr, &pivot_idx, stack_a->size, 1, 1, first);
+		quick_sort_a(stack_a, stack_b, stack_a->size, 1);
 		// ft_printf("-----stack_a-----\n");
 		// dlist_print(stack_a);
 		// ft_printf("-----stack_b-----\n");
@@ -358,7 +334,7 @@ void	sort_two_size(t_dlist *stack_a, int flag)
 	}
 }
 
-void	sort_three_size(t_dlist *stack_a)
+void	sort_three_size_upper(t_dlist *stack_a, int flag)
 {
 	int first;
 	int second;
@@ -371,20 +347,368 @@ void	sort_three_size(t_dlist *stack_a)
 		return ;
 	else if (first < second && second > third && first < third)
 	{
-		swap_stack(stack_a, 1);
-		rotate_stack(stack_a, 1);
+		swap_stack(stack_a, flag);
+		rotate_stack(stack_a, flag);
 	}
 	else if (first > second && second < third && first < third)
-		swap_stack(stack_a, 1);
+		swap_stack(stack_a, flag);
 	else if (first < second && second > third && first > third)
-		reverse_rotate_stack(stack_a, 1);
+		reverse_rotate_stack(stack_a, flag);
 	else if (first > second && second < third && first > third)
-		rotate_stack(stack_a, 1);
+		rotate_stack(stack_a, flag);
 	else if (first > second && second > third)
 	{
-		swap_stack(stack_a, 1);
-		reverse_rotate_stack(stack_a, 1);
+		swap_stack(stack_a, flag);
+		reverse_rotate_stack(stack_a, flag);
+	}
+}
+
+void	sort_three_size_lower(t_dlist *stack_a, int flag)
+{
+	int first;
+	int second;
+	int third;
+
+	first = stack_a->head->value;
+	second = stack_a->head->next->value;
+	third = stack_a->head->next->next->value;
+	if (first > second && second > third)
+		return ;
+	else if (first < second && second > third && first < third)
+		rotate_stack(stack_a, flag);
+	else if (first > second && second < third && first < third)
+		reverse_rotate_stack(stack_a, flag);
+	else if (first < second && second > third && first > third)
+		swap_stack(stack_a, flag);
+	else if (first > second && second < third && first > third)
+	{
+		swap_stack(stack_a, flag);
+		rotate_stack(stack_a, flag);
+	}
+	else if (first < second && second < third)
+	{
+		swap_stack(stack_a, flag);
+		reverse_rotate_stack(stack_a, flag);
+	}
+}
+
+void	quick_sort_three_size_upper(t_dlist *stack_a, t_dlist *stack_b, int flag)
+{
+	int first;
+	int second;
+	int third;
+
+	first = stack_a->head->value;
+	second = stack_a->head->next->value;
+	third = stack_a->head->next->next->value;
+	if (first < second && second < third)
+		return ;
+	else if (first < second && second > third && first < third)
+	{
+		push_stack(stack_b, stack_a, (flag % 2) + 1);
+		swap_stack(stack_a, flag);
+		push_stack(stack_a, stack_b, flag);
+	}
+	else if (first > second && second < third && first < third)
+		swap_stack(stack_a, flag);
+	else if (first < second && second > third && first > third)
+	{
+		push_stack(stack_b, stack_a, (flag % 2) + 1);
+		push_stack(stack_b, stack_a, (flag % 2) + 1);
+		rotate_stack(stack_a, flag);
+		push_stack(stack_a, stack_b, flag);
+		push_stack(stack_a, stack_b, flag);
+		reverse_rotate_stack(stack_a, flag);
+	}
+	else if (first > second && second < third && first > third)
+	{
+		push_stack(stack_b, stack_a, (flag % 2) + 1);
+		rotate_stack(stack_a, flag);
+		rotate_stack(stack_a, flag);
+		push_stack(stack_a, stack_b, flag);
+		reverse_rotate_stack(stack_a, flag);
+		reverse_rotate_stack(stack_a, flag);
+	}
+	else if (first > second && second > third)
+	{
+		push_stack(stack_b, stack_a, (flag % 2) + 1);
+		swap_stack(stack_a, flag);
+		rotate_stack(stack_a, flag);
+		rotate_stack(stack_a, flag);
+		push_stack(stack_a, stack_b, flag);
+		reverse_rotate_stack(stack_a, flag);
+		reverse_rotate_stack(stack_a, flag);
+	}
+}
+
+void	quick_sort_three_size_lower(t_dlist *stack_a, t_dlist *stack_b, int flag)
+{
+	int first;
+	int second;
+	int third;
+
+	first = stack_a->head->value;
+	second = stack_a->head->next->value;
+	third = stack_a->head->next->next->value;
+	if (first > second && second > third)
+		return ;
+	else if (first < second && second > third && first < third)
+	{
+		push_stack(stack_b, stack_a, (flag % 2) + 1);
+		rotate_stack(stack_a, flag);
+		rotate_stack(stack_a, flag);
+		push_stack(stack_a, stack_b, flag);
+		reverse_rotate_stack(stack_a, flag);
+		reverse_rotate_stack(stack_a, flag);
+	}
+	else if (first > second && second < third && first < third)
+	{
+		push_stack(stack_b, stack_a, (flag % 2) + 1);
+		push_stack(stack_b, stack_a, (flag % 2) + 1);
+		rotate_stack(stack_a, flag);
+		push_stack(stack_a, stack_b, flag);
+		push_stack(stack_a, stack_b, flag);
+		reverse_rotate_stack(stack_a, flag);
+	}
+	else if (first < second && second > third && first > third)
+		swap_stack(stack_a, flag);
+	else if (first > second && second < third && first > third)
+	{
+		push_stack(stack_b, stack_a, (flag % 2) + 1);
+		swap_stack(stack_a, flag);
+		push_stack(stack_a, stack_b, flag);
+	}
+	else if (first < second && second < third)
+	{
+		push_stack(stack_b, stack_a, (flag % 2) + 1);
+		swap_stack(stack_a, flag);
+		rotate_stack(stack_a, flag);
+		rotate_stack(stack_a, flag);
+		push_stack(stack_a, stack_b, flag);
+		reverse_rotate_stack(stack_a, flag);
+		reverse_rotate_stack(stack_a, flag);
+	}
+}
+
+void	quick_sort_four_size_upper(t_dlist *stack_a, t_dlist *stack_b, int flag)
+{
+	int first;
+	int second;
+	int third;
+	int four;
+
+	first = stack_a->head->value;
+	second = stack_a->head->next->value;
+	third = stack_a->head->next->next->value;
+	four = stack_a->head->next->next->next->value;
+
+	if (first < second && second < third && third < four)
+		return ;
+	else if (four > first && four > second && four > third)
+		quick_sort_three_size_upper(stack_a, stack_b, flag);
+	else if (third > first && third > second && third > four)
+	{
+		reverse_rotate_stack(stack_a, flag);
+		quick_sort_three_size_upper(stack_a, stack_b, flag);
+	}
+	else if (second > first && second > third && second > four)
+	{
+		swap_stack(stack_a, flag);
+		rotate_stack(stack_a, flag);
+		quick_sort_three_size_upper(stack_a, stack_b, flag);
 	}
 	else
-		ft_printf("swap error\n");
+	{
+		rotate_stack(stack_a, flag);
+		quick_sort_three_size_upper(stack_a, stack_b, flag);
+	}
 }
+
+void	quick_sort_four_size_lower(t_dlist *stack_a, t_dlist *stack_b, int flag)
+{
+	int first;
+	int second;
+	int third;
+	int four;
+
+	first = stack_a->head->value;
+	second = stack_a->head->next->value;
+	third = stack_a->head->next->next->value;
+	four = stack_a->head->next->next->next->value;
+
+	if (first < second && second < third && third < four)
+		return ;
+	else if (first < second && first < third && first < four)
+	{
+		rotate_stack(stack_a, flag);
+		quick_sort_three_size_lower(stack_a, stack_b, flag);
+	}
+	else if (second < first && second < third && second < four)
+	{
+		swap_stack(stack_a, flag);
+		reverse_rotate_stack(stack_a, flag);
+		quick_sort_three_size_lower(stack_a, stack_b, flag);
+	}
+	else if (third < first && third < second && third < four)
+	{
+		reverse_rotate_stack(stack_a, flag);
+		quick_sort_three_size_lower(stack_a, stack_b, flag);
+	}
+	else
+		quick_sort_three_size_lower(stack_a, stack_b, flag);
+}
+
+// void	sort_four_size_lower(t_dlist *stack_a, int flag)
+// {
+// 	int first;
+// 	int second;
+// 	int third;
+// 	int four;
+
+// 	first = stack_a->head->value;
+// 	second = stack_a->head->next->value;
+// 	third = stack_a->head->next->next->value;
+// 	four = stack_a->head->next->next->next->value;
+
+
+// }
+
+/////////////////////////////////////////////////////
+/*
+void quick_sort_a(t_dlist *stack_a, t_dlist *stack_b, int size, int upper)
+{
+	int mid;
+	int i;
+	int push_cnt;
+	int	rotate_cnt;
+
+	i = 0;
+	rotate_cnt = 0;
+	push_cnt = 0;
+	if (size <= 1)
+		return ;
+	else if (size == 2)
+	{
+		if (upper % 2 == 1)
+			sort_two_size(stack_a, 1);
+		else if (upper % 2 == 0)
+			sort_two_size(stack_a, 3);
+		return ;
+	}
+	else if (size == 3)
+	{
+		if (stack_a->size == 3 && upper % 2 == 1)
+			sort_three_size_upper(stack_a, 1);
+		else if (stack_a->size == 3 && upper % 2 == 0)
+			sort_three_size_lower(stack_a, 1);
+		else if (upper % 2 == 1)
+			quick_sort_three_size_upper(stack_a, stack_b, 1);
+		else if (upper % 2 == 0)
+			quick_sort_three_size_lower(stack_a, stack_b, 1);
+		return ;
+	}
+	mid = init_mid(stack_a, size);
+
+	while (i < size)
+	{
+		if (upper % 2 == 1 && stack_a->head->value <= mid)
+		{
+			push_stack(stack_b, stack_a, 2);
+			push_cnt++;
+		}
+		else if (upper % 2 == 0 && stack_a->head->value >= mid)
+		{
+			push_stack(stack_b, stack_a, 2);
+			push_cnt++;
+		}
+		else
+		{
+			rotate_stack(stack_a, 1);
+			rotate_cnt++;
+		}
+		i++;
+	}
+	if (upper != 1)
+	{
+		while (rotate_cnt != 0)
+		{
+			reverse_rotate_stack(stack_a, 1);
+			rotate_cnt--;
+		}
+	}
+	quick_sort_a(stack_a, stack_b, size - push_cnt, upper);
+	quick_sort_b(stack_a, stack_b, push_cnt, upper + 1);
+	while (push_cnt != 0)
+	{
+		push_stack(stack_a, stack_b, 1);
+		push_cnt--;
+	}
+}
+
+void quick_sort_b(t_dlist *stack_a, t_dlist *stack_b, int size, int upper)
+{
+	int mid;
+	int i;
+	int push_cnt;
+	int	rotate_cnt;
+
+	i = 0;
+	push_cnt = 0;
+	rotate_cnt = 0;
+	if (size <= 1)
+		return ;
+	else if (size == 2)
+	{
+		if (upper % 2 == 1)
+			sort_two_size(stack_b, 2);
+		else if (upper % 2 == 0)
+			sort_two_size(stack_b, 4);
+		return ;
+	}
+	else if (size == 3)
+	{
+		if (stack_b->size == 3 && upper % 2 == 1)
+			sort_three_size_upper(stack_b, 2);
+		else if (stack_b->size == 3 && upper % 2 == 0)
+			sort_three_size_lower(stack_b, 2);
+		else if (upper % 2 == 1)
+			quick_sort_three_size_upper(stack_b, stack_a, 2);
+		else if (upper % 2 == 0)
+			quick_sort_three_size_lower(stack_b, stack_a, 2);
+		return ;
+	}
+	mid = init_mid(stack_b, size);
+
+	while (i < size)
+	{
+		if (upper % 2 == 1 && stack_b->head->value <= mid)
+		{
+			push_stack(stack_a, stack_b, 1);
+			push_cnt++;
+		}
+		else if (upper % 2 == 0 && stack_b->head->value >= mid)
+		{
+			push_stack(stack_a, stack_b, 1);
+			push_cnt++;
+		}
+		else
+		{
+			rotate_stack(stack_b, 2);
+			rotate_cnt++;
+		}
+		i++;
+	}
+	while (rotate_cnt != 0)
+	{
+		reverse_rotate_stack(stack_b, 2);
+		rotate_cnt--;
+	}
+	quick_sort_a(stack_a, stack_b, push_cnt, upper + 1);
+	quick_sort_b(stack_a, stack_b, size - push_cnt, upper);
+	while (push_cnt != 0)
+	{
+		push_stack(stack_b, stack_a, 2);
+		push_cnt--;
+	}
+}
+*/

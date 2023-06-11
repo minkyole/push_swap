@@ -155,6 +155,7 @@ void	check_sort(t_dlist *stack_a, t_dlist *stack_b)
 			//ft_printf("%d %d\n", temp_node->value, temp_node->next->value);
 			if (temp_node->value > temp_node->next->value)
 			{
+				ft_printf("i %d value %d\n", i, temp_node->value);
 				ft_printf("KO\n");
 				return ;
 			}
