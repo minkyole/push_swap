@@ -66,14 +66,12 @@ void	add_first_node(t_dlist *dlist, int value)
 		return ;
 	if (dlist->head == NULL)
 	{
-		ft_printf("head NULL\n");
 		dlist->head = new_node;
 		new_node->prev = new_node;
 		new_node->next = new_node;
 	}
 	else
 	{
-		ft_printf("head Not NULL");
 		new_node->prev = dlist->head->prev;
 		dlist->head->prev->next = new_node;
 		new_node->next = dlist->head;

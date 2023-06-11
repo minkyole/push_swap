@@ -130,12 +130,12 @@ void	command_input(t_dlist *stack_a, t_dlist *stack_b)
 			ft_printf("input Error2\n");
 			exit(1);
 		}
-		ft_printf("--------stack_a--------\n");
-		dlist_print(stack_a);
-		ft_printf("--------stack_b--------\n");
-		dlist_print(stack_b);
 		free(buff);
 	}
+	ft_printf("--------stack_a--------\n");
+	dlist_print(stack_a);
+	ft_printf("--------stack_b--------\n");
+	dlist_print(stack_b);
 	check_sort(stack_a, stack_b);
 	free(buff);
 }
@@ -143,18 +143,22 @@ void	command_input(t_dlist *stack_a, t_dlist *stack_b)
 void	check_sort(t_dlist *stack_a, t_dlist *stack_b)
 {
 	int i = 0;
+	t_node *temp_node;
 
+	temp_node = stack_a->head;
 	if (stack_b->size != 0)
 		ft_printf("KO\n");
 	else
 	{
 		while(i + 1 < stack_a->size)
 		{
-			if (stack_a->head->value > stack_a->head->next->value)
+			//ft_printf("%d %d\n", temp_node->value, temp_node->next->value);
+			if (temp_node->value > temp_node->next->value)
 			{
 				ft_printf("KO\n");
 				return ;
 			}
+			temp_node = temp_node->next;
 			i++;
 		}
 		ft_printf("OK\n");
