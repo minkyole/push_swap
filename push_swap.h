@@ -55,4 +55,7 @@ void	quick_sort_three_size_upper(t_dlist *stack_a, t_dlist *stack_b, int flag);
 void	quick_sort_three_size_lower(t_dlist *stack_a, t_dlist *stack_b, int flag);
 void	quick_sort_four_size_upper(t_dlist *stack_a, t_dlist *stack_b, int flag);
 void	quick_sort_four_size_lower(t_dlist *stack_a, t_dlist *stack_b, int flag);
+void	sort_four_size_lower(t_dlist *stack_a, int flag);
+void	sort_four_size_upper(t_dlist *stack_a, int flag);
+
 #endif
