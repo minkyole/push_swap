@@ -47,9 +47,11 @@ void	sort_two_size(t_dlist *stack_a, int flag);
 void	sort_three_size_lower(t_dlist *stack_a, int flag);
 void	sort_three_size_upper(t_dlist *stack_a, int flag);
 
-int init_mid(t_dlist *stack_a, int size);
+void init_pivot(t_dlist *stack_a, int size, int *first_pivot, int *second_pivot);
 void quick_sort_a(t_dlist *stack_a, t_dlist *stack_b, int size, int upper);
-void quick_sort_b(t_dlist *stack_a, t_dlist *stack_b, int size, int upper);
+void quick_sort_b_up(t_dlist *stack_a, t_dlist *stack_b, int size, int upper);
+void quick_sort_a_down(t_dlist *stack_a, t_dlist *stack_b, int size, int upper);
+void quick_sort_b_down(t_dlist *stack_a, t_dlist *stack_b, int size, int upper);
 int check_size(t_dlist *stack_b, int *pivot_arr, int pivot_idx);
 void	quick_sort_three_size_upper(t_dlist *stack_a, t_dlist *stack_b, int flag);
 void	quick_sort_three_size_lower(t_dlist *stack_a, t_dlist *stack_b, int flag);
