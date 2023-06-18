@@ -39,6 +39,19 @@ typedef struct s_dlist
 	int		size;
 }	t_dlist;
 
+typedef struct	s_sort_element
+{
+	int	upper;
+	int	flag;
+	int	command;
+	int	size;
+	int	current_up_cnt;
+	int	next_up_cnt;
+	int	next_down_cnt;
+	int	first_pivot;
+	int	second_pivot;
+}	t_sort_element;
+
 t_dlist	*dlist_init(void);
 t_node *node_init(int value);
 void	add_last_node(t_dlist *dlist, int value);
@@ -60,16 +73,18 @@ void	sort_two_size(t_dlist *stack_a, t_command_dlist *stack_command, int flag);
 void	sort_three_size_lower(t_dlist *stack_a, t_command_dlist *stack_command, int flag);
 void	sort_three_size_upper(t_dlist *stack_a, t_command_dlist *stack_command, int flag);
 
-void init_pivot(t_dlist *stack_a, int size, int *first_pivot, int *second_pivot);
-void quick_sort_a(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, int size, int upper);
-void quick_sort_b_up(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, int size, int upper);
-void quick_sort_b_down(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, int size, int upper);
-void quick_sort_a_down(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, int size, int upper);
+void	init_pivot(t_dlist *stack_a, int size, t_sort_element *sort_element);
+void quick_sort_a(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, t_sort_element sort_element);
+void quick_sort_b_up(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, t_sort_element sort_element);
+void quick_sort_b_down(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, t_sort_element sort_element);
+void quick_sort_a_down(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, t_sort_element sort_element);
 int check_size(t_dlist *stack_b, int *pivot_arr, int pivot_idx);
-void	quick_sort_three_size_upper(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, int flag);
-void	quick_sort_three_size_lower(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, int flag);
-void	quick_sort_four_size_upper(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, int flag);
-void	quick_sort_four_size_lower(t_dlist *stack_a, t_dlist *stack_b ,t_command_dlist *stack_command, int flag);
+void	quick_sort_three_size_lower(t_dlist *stack_a, t_dlist *stack_b, \
+t_command_dlist *stack_command, t_sort_element sort_element);
+void	quick_sort_three_size_upper(t_dlist *stack_a, t_dlist *stack_b, \
+t_command_dlist *stack_command, t_sort_element sort_element);
+void	quick_sort_four_size_lower(t_dlist *stack_a, t_dlist *stack_b ,t_command_dlist *stack_command, t_sort_element sort_element);
+void	quick_sort_four_size_upper(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, t_sort_element sort_element);
 void	sort_four_size_lower(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, int flag);
 void	sort_four_size_upper(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, int flag);
 
@@ -82,29 +97,31 @@ void	dlist_command_print(t_command_dlist *dlist);
 t_command_dlist	*command_dlist_init(void);
 void check_combine_command(t_command_dlist *stack_command);
 t_command_node *combine_command(t_command_node *first_node, t_command_node *second_node, int flag, t_command_dlist *stack_command);
-void	quick_sort_five_size_lower(t_dlist *stack_a, t_dlist *stack_b ,t_command_dlist *stack_command, int flag);
-void	quick_sort_five_size_upper(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, int flag);
+void	quick_sort_five_size_lower(t_dlist *stack_a, t_dlist *stack_b ,t_command_dlist *stack_command, t_sort_element sort_element);
+void	quick_sort_five_size_upper(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, t_sort_element sort_element);
 void	sort_five_size_upper(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, int flag);
 void	sort_five_size_lower(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, int flag);
 int	add_stack_a(char **argv, int i, t_dlist *stack_a);
 void	error(int flag);
-void	quick_sort_three_size_lower(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist *stack_command, int flag);
-void	quick_sort_three_size_upper(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist *stack_command, int flag);
 void	sort_three_command2(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist *stack_command, int command, int flag);
+t_command_dlist *stack_command, t_sort_element sort_element);
 void	sort_three_command1(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist *stack_command, int command, int flag);
+t_command_dlist *stack_command, t_sort_element sort_element);
 void	sort_three_size_lower(t_dlist *stack_a, \
 t_command_dlist *stack_command, int flag);
 void	sort_three_size_upper(t_dlist *stack_a, \
 t_command_dlist *stack_command, int flag);
-void	init_pivot(t_dlist *stack_a, int size, int *first_pivot, \
-int *second_pivot);
-void	stack_restore(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, int upper,\
-int sort_b_up_cnt, int sort_b_down_cnt, int sort_a_up_cnt, int flag, int command);
-void	stack_div(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, int size, int upper,\
-int *sort_b_up_cnt, int *sort_b_down_cnt, int *sort_a_up_cnt, int flag);
-int	quick_sort_size_check(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, int size, int upper, int flag);
+void	stack_restore(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, t_sort_element *sort_element);
+void	stack_div(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, t_sort_element *sort_element);
+int	stack_div_command1(t_dlist *stack_a, t_dlist *stack_b, \
+t_command_dlist *stack_command, t_sort_element *sort_element);
+void	stack_div_command2(t_dlist *stack_a, t_dlist *stack_b, \
+t_command_dlist *stack_command, t_sort_element *sort_element);
+int	quick_sort_size_check(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, t_sort_element sort_element);
+int	quick_sort_size_check_2_3(t_dlist *stack_a, t_dlist *stack_b, \
+t_command_dlist *stack_command, t_sort_element sort_element);
+int	quick_sort_size_check_4(t_dlist *stack_a, t_dlist *stack_b, \
+t_command_dlist *stack_command, t_sort_element sort_element);
+int	quick_sort_size_check_5(t_dlist *stack_a, t_dlist *stack_b, \
+t_command_dlist *stack_command, t_sort_element sort_element);
 #endif

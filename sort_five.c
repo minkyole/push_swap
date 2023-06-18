@@ -13,7 +13,7 @@
 #include "libft.h"
 #include "push_swap.h"
 
-void	quick_sort_five_size_upper(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, int flag)
+void	quick_sort_five_size_upper(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist *stack_command, t_sort_element sort_element)
 {
 	int first;
 	int second;
@@ -30,62 +30,62 @@ void	quick_sort_five_size_upper(t_dlist *stack_a, t_dlist *stack_b, t_command_dl
 	if (first < second && second < third && third < four && four < five)
 		return ;
 	else if (five > first && five > second && five > third && five > four)
-		quick_sort_four_size_upper(stack_a, stack_b, stack_command, flag);
+		quick_sort_four_size_upper(stack_a, stack_b, stack_command, sort_element);
 	else if (four > first && four > second && four > third && four > five)
 	{
-		push_stack(stack_b, stack_a, stack_command, (flag % 2) + 1);
-		push_stack(stack_b, stack_a, stack_command, (flag % 2) + 1);
-		push_stack(stack_b, stack_a, stack_command, (flag % 2) + 1);
-		swap_stack(stack_a, stack_command, flag);
-		push_stack(stack_a, stack_b, stack_command, flag);
-		push_stack(stack_a, stack_b, stack_command, flag);
-		push_stack(stack_a, stack_b, stack_command, flag);
-		quick_sort_four_size_upper(stack_a, stack_b, stack_command, flag);
+		push_stack(stack_b, stack_a, stack_command, (sort_element.flag % 2) + 1);
+		push_stack(stack_b, stack_a, stack_command, (sort_element.flag % 2) + 1);
+		push_stack(stack_b, stack_a, stack_command, (sort_element.flag % 2) + 1);
+		swap_stack(stack_a, stack_command, sort_element.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		quick_sort_four_size_upper(stack_a, stack_b, stack_command, sort_element);
 	}
 	else if (third > first && third > second && third > four && third > five)
 	{
-		push_stack(stack_b, stack_a, stack_command, (flag % 2) + 1);
-		push_stack(stack_b, stack_a, stack_command, (flag % 2) + 1);
-		swap_stack(stack_a, stack_command, flag);
-		push_stack(stack_b, stack_a, stack_command, (flag % 2) + 1);
-		swap_stack(stack_a, stack_command, flag);
-		push_stack(stack_a, stack_b, stack_command, flag);
-		push_stack(stack_a, stack_b, stack_command, flag);
-		push_stack(stack_a, stack_b, stack_command, flag);
-		quick_sort_four_size_upper(stack_a, stack_b, stack_command, flag);
+		push_stack(stack_b, stack_a, stack_command, (sort_element.flag % 2) + 1);
+		push_stack(stack_b, stack_a, stack_command, (sort_element.flag % 2) + 1);
+		swap_stack(stack_a, stack_command, sort_element.flag);
+		push_stack(stack_b, stack_a, stack_command, (sort_element.flag % 2) + 1);
+		swap_stack(stack_a, stack_command, sort_element.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		quick_sort_four_size_upper(stack_a, stack_b, stack_command, sort_element);
 	}
 	else if (second > first && second > third && second > four && second > five)
 	{
-		push_stack(stack_b, stack_a, stack_command, (flag % 2) + 1);
-		swap_stack(stack_a, stack_command, flag);
-		push_stack(stack_b, stack_a, stack_command, (flag % 2) + 1);
-		swap_stack(stack_a, stack_command, flag);
-		push_stack(stack_b, stack_a, stack_command, (flag % 2) + 1);
-		swap_stack(stack_a, stack_command, flag);
-		push_stack(stack_a, stack_b, stack_command, flag);
-		push_stack(stack_a, stack_b, stack_command, flag);
-		push_stack(stack_a, stack_b, stack_command, flag);
-		quick_sort_four_size_upper(stack_a, stack_b, stack_command, flag);
+		push_stack(stack_b, stack_a, stack_command, (sort_element.flag % 2) + 1);
+		swap_stack(stack_a, stack_command, sort_element.flag);
+		push_stack(stack_b, stack_a, stack_command, (sort_element.flag % 2) + 1);
+		swap_stack(stack_a, stack_command, sort_element.flag);
+		push_stack(stack_b, stack_a, stack_command, (sort_element.flag % 2) + 1);
+		swap_stack(stack_a, stack_command, sort_element.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		quick_sort_four_size_upper(stack_a, stack_b, stack_command, sort_element);
 	}
 	else if (first > second && first > third && first > four && first > five)
 	{
-		swap_stack(stack_a, stack_command, flag);
-		push_stack(stack_b, stack_a, stack_command, (flag % 2) + 1);
-		swap_stack(stack_a, stack_command, flag);
-		push_stack(stack_b, stack_a, stack_command, (flag % 2) + 1);
-		swap_stack(stack_a, stack_command, flag);
-		push_stack(stack_b, stack_a, stack_command, (flag % 2) + 1);
-		swap_stack(stack_a, stack_command, flag);
-		push_stack(stack_a, stack_b, stack_command, flag);
-		push_stack(stack_a, stack_b, stack_command, flag);
-		push_stack(stack_a, stack_b, stack_command, flag);
-		quick_sort_four_size_upper(stack_a, stack_b, stack_command, flag);
+		swap_stack(stack_a, stack_command, sort_element.flag);
+		push_stack(stack_b, stack_a, stack_command, (sort_element.flag % 2) + 1);
+		swap_stack(stack_a, stack_command, sort_element.flag);
+		push_stack(stack_b, stack_a, stack_command, (sort_element.flag % 2) + 1);
+		swap_stack(stack_a, stack_command, sort_element.flag);
+		push_stack(stack_b, stack_a, stack_command, (sort_element.flag % 2) + 1);
+		swap_stack(stack_a, stack_command, sort_element.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		quick_sort_four_size_upper(stack_a, stack_b, stack_command, sort_element);
 	}
 	else
 		ft_printf("test1 %d %d %d %d %d\n", first, second, third, four, five);
 }
 
-void	quick_sort_five_size_lower(t_dlist *stack_a, t_dlist *stack_b ,t_command_dlist *stack_command, int flag)
+void	quick_sort_five_size_lower(t_dlist *stack_a, t_dlist *stack_b ,t_command_dlist *stack_command, t_sort_element sort_element)
 {
 	int first;
 	int second;
@@ -102,56 +102,56 @@ void	quick_sort_five_size_lower(t_dlist *stack_a, t_dlist *stack_b ,t_command_dl
 	if (first > second && second > third && third > four && four > five)
 		return ;
 	else if (five < first && five < second && five < third && five < four)
-		quick_sort_four_size_lower(stack_a, stack_b, stack_command, flag);
+		quick_sort_four_size_lower(stack_a, stack_b, stack_command, sort_element);
 	else if (four < first && four < second && four < third && four < five)
 	{
-		push_stack(stack_b, stack_a, stack_command, (flag % 2) + 1);
-		push_stack(stack_b, stack_a, stack_command, (flag % 2) + 1);
-		push_stack(stack_b, stack_a, stack_command, (flag % 2) + 1);
-		swap_stack(stack_a, stack_command, flag);
-		push_stack(stack_a, stack_b, stack_command, flag);
-		push_stack(stack_a, stack_b, stack_command, flag);
-		push_stack(stack_a, stack_b, stack_command, flag);
-		quick_sort_four_size_lower(stack_a, stack_b, stack_command, flag);
+		push_stack(stack_b, stack_a, stack_command, (sort_element.flag % 2) + 1);
+		push_stack(stack_b, stack_a, stack_command, (sort_element.flag % 2) + 1);
+		push_stack(stack_b, stack_a, stack_command, (sort_element.flag % 2) + 1);
+		swap_stack(stack_a, stack_command, sort_element.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		quick_sort_four_size_lower(stack_a, stack_b, stack_command, sort_element);
 	}
 	else if (third < first && third < second && third < four && third < five)
 	{
-		push_stack(stack_b, stack_a, stack_command, (flag % 2) + 1);
-		push_stack(stack_b, stack_a, stack_command, (flag % 2) + 1);
-		swap_stack(stack_a, stack_command, flag);
-		push_stack(stack_b, stack_a, stack_command, (flag % 2) + 1);
-		swap_stack(stack_a, stack_command, flag);
-		push_stack(stack_a, stack_b, stack_command, flag);
-		push_stack(stack_a, stack_b, stack_command, flag);
-		push_stack(stack_a, stack_b, stack_command, flag);
-		quick_sort_four_size_lower(stack_a, stack_b, stack_command, flag);
+		push_stack(stack_b, stack_a, stack_command, (sort_element.flag % 2) + 1);
+		push_stack(stack_b, stack_a, stack_command, (sort_element.flag % 2) + 1);
+		swap_stack(stack_a, stack_command, sort_element.flag);
+		push_stack(stack_b, stack_a, stack_command, (sort_element.flag % 2) + 1);
+		swap_stack(stack_a, stack_command, sort_element.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		quick_sort_four_size_lower(stack_a, stack_b, stack_command, sort_element);
 	}
 	else if (second < first && second < third && second < four && second < five)
 	{
-		push_stack(stack_b, stack_a, stack_command, (flag % 2) + 1);
-		swap_stack(stack_a, stack_command, flag);
-		push_stack(stack_b, stack_a, stack_command, (flag % 2) + 1);
-		swap_stack(stack_a, stack_command, flag);
-		push_stack(stack_b, stack_a, stack_command, (flag % 2) + 1);
-		swap_stack(stack_a, stack_command, flag);
-		push_stack(stack_a, stack_b, stack_command, flag);
-		push_stack(stack_a, stack_b, stack_command, flag);
-		push_stack(stack_a, stack_b, stack_command, flag);
-		quick_sort_four_size_lower(stack_a, stack_b, stack_command, flag);
+		push_stack(stack_b, stack_a, stack_command, (sort_element.flag % 2) + 1);
+		swap_stack(stack_a, stack_command, sort_element.flag);
+		push_stack(stack_b, stack_a, stack_command, (sort_element.flag % 2) + 1);
+		swap_stack(stack_a, stack_command, sort_element.flag);
+		push_stack(stack_b, stack_a, stack_command, (sort_element.flag % 2) + 1);
+		swap_stack(stack_a, stack_command, sort_element.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		quick_sort_four_size_lower(stack_a, stack_b, stack_command, sort_element);
 	}
 	else if (first < second && first < third && first < four && first < five)
 	{
-		swap_stack(stack_a, stack_command, flag);
-		push_stack(stack_b, stack_a, stack_command, (flag % 2) + 1);
-		swap_stack(stack_a, stack_command, flag);
-		push_stack(stack_b, stack_a, stack_command, (flag % 2) + 1);
-		swap_stack(stack_a, stack_command, flag);
-		push_stack(stack_b, stack_a, stack_command, (flag % 2) + 1);
-		swap_stack(stack_a, stack_command, flag);
-		push_stack(stack_a, stack_b, stack_command, flag);
-		push_stack(stack_a, stack_b, stack_command, flag);
-		push_stack(stack_a, stack_b, stack_command, flag);
-		quick_sort_four_size_lower(stack_a, stack_b, stack_command, flag);
+		swap_stack(stack_a, stack_command, sort_element.flag);
+		push_stack(stack_b, stack_a, stack_command, (sort_element.flag % 2) + 1);
+		swap_stack(stack_a, stack_command, sort_element.flag);
+		push_stack(stack_b, stack_a, stack_command, (sort_element.flag % 2) + 1);
+		swap_stack(stack_a, stack_command, sort_element.flag);
+		push_stack(stack_b, stack_a, stack_command, (sort_element.flag % 2) + 1);
+		swap_stack(stack_a, stack_command, sort_element.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		quick_sort_four_size_lower(stack_a, stack_b, stack_command, sort_element);
 	}
 	else
 		ft_printf("test %d %d %d %d %d\n", first, second, third, four, five);

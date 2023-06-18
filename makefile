@@ -29,7 +29,7 @@ NAME = push_swap
 BNAME = checker
 LIBFT = ./libft/libft.a
 LIBFT_DIR = libft
-SRCS = list1.c list2.c command1.c command2.c main.c push_swap_util.c sort.c list_command1.c list_command2.c sort_two.c sort_three.c sort_util1.c sort_four.c sort_five.c quick_sort_util.c
+SRCS = list1.c list2.c command1.c command2.c main.c push_swap_util.c sort.c list_command1.c list_command2.c sort_two.c sort_three.c sort_util1.c sort_four.c sort_five.c quick_sort_div.c quick_sort_size.c
 BSRCS = checker_bonus.c list1_bonus.c list2_bonus.c command1_bonus.c command2_bonus.c checker_util_bonus.c
 OBJS = $(SRCS:.c=.o)
 BOBJS = $(BSRCS:.c=.o)
@@ -37,7 +37,7 @@ BOBJS = $(BSRCS:.c=.o)
 .PHONY : clean fclean re all bonus
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) -g $^ -o $@
 
 clean:
 	rm -f $(OBJS) $(BOBJS)
