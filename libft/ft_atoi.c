@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
 long long	ft_atoi(const char *str)
 {
 	long long num;

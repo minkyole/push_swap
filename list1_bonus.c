@@ -15,7 +15,7 @@
 
 t_dlist	*dlist_init(void)
 {
-	t_dlist *new_list;
+	t_dlist	*new_list;
 
 	new_list = malloc(sizeof(t_dlist));
 	new_list->head = NULL;
@@ -23,7 +23,7 @@ t_dlist	*dlist_init(void)
 	return (new_list);
 }
 
-t_node *node_init(int value)
+t_node	*node_init(int value)
 {
 	t_node	*new_node;
 
@@ -36,7 +36,7 @@ t_node *node_init(int value)
 
 void	add_last_node(t_dlist *dlist, int value)
 {
-	t_node *new_node;
+	t_node	*new_node;
 
 	new_node = node_init(value);
 	if (dlist == NULL)
@@ -59,7 +59,7 @@ void	add_last_node(t_dlist *dlist, int value)
 
 void	add_first_node(t_dlist *dlist, int value)
 {
-	t_node *new_node;
+	t_node	*new_node;
 
 	new_node = node_init(value);
 	if (dlist == NULL)

@@ -1,44 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list.c                                             :+:      :+:    :+:   */
+/*   list_command1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minkyole <minkyole@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 15:04:00 by minkyole          #+#    #+#             */
-/*   Updated: 2023/05/31 15:04:02 by minkyole         ###   ########.fr       */
+/*   Created: 2023/06/14 01:43:12 by minkyole          #+#    #+#             */
+/*   Updated: 2023/06/14 01:43:13 by minkyole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-t_dlist	*dlist_init(void)
+t_command_dlist	*command_dlist_init(void)
 {
-	t_dlist	*new_list;
+	t_command_dlist	*new_list;
 
-	new_list = malloc(sizeof(t_dlist));
+	new_list = malloc(sizeof(t_command_dlist));
 	new_list->head = NULL;
 	new_list->size = 0;
 	return (new_list);
 }
 
-t_node	*node_init(int value)
+t_command_node	*command_node_init(char *command)
 {
-	t_node	*new_node;
+	t_command_node	*new_node;
 
-	new_node = malloc(sizeof(t_node));
+	new_node = malloc(sizeof(t_command_node));
 	new_node->next = NULL;
 	new_node->prev = NULL;
-	new_node->value = value;
+	ft_strlcpy(new_node->command, command, 5);
 	return (new_node);
 }
 
-void	add_last_node(t_dlist *dlist, int value)
+void	add_last_command_node(t_command_dlist *dlist, char *command)
 {
-	t_node	*new_node;
+	t_command_node	*new_node;
 
-	new_node = node_init(value);
+	new_node = command_node_init(command);
 	if (dlist == NULL)
 		return ;
 	if (dlist->head == NULL)
@@ -57,26 +57,19 @@ void	add_last_node(t_dlist *dlist, int value)
 	dlist->size += 1;
 }
 
-void	add_first_node(t_dlist *dlist, int value)
+void	dlist_command_print(t_command_dlist *dlist)
 {
-	t_node	*new_node;
+	int				i;
+	t_command_node	*temp_node;
 
-	new_node = node_init(value);
-	if (dlist == NULL)
+	i = 0;
+	if (dlist == NULL || dlist->head == NULL)
 		return ;
-	if (dlist->head == NULL)
+	temp_node = dlist->head;
+	while (i < dlist->size)
 	{
-		dlist->head = new_node;
-		new_node->prev = new_node;
-		new_node->next = new_node;
+		ft_printf("%s\n", temp_node->command);
+		temp_node = temp_node->next;
+		i++;
 	}
-	else
-	{
-		new_node->prev = dlist->head->prev;
-		dlist->head->prev->next = new_node;
-		new_node->next = dlist->head;
-		dlist->head->prev = new_node;
-		dlist->head = new_node;
-	}
-	dlist->size += 1;
 }

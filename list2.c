@@ -42,7 +42,7 @@ void	delete_last_node(t_dlist *dlist)
 
 void	delete_first_node(t_dlist *dlist)
 {
-	t_node *temp_node;
+	t_node	*temp_node;
 
 	if (dlist == NULL || dlist->head == NULL)
 		return ;
@@ -58,27 +58,26 @@ void	delete_first_node(t_dlist *dlist)
 
 void	dlist_print(t_dlist *dlist)
 {
-	int i;
+	int		i;
 	t_node	*temp_node;
 
 	i = 0;
 	if (dlist == NULL || dlist->head == NULL)
 		return ;
 	temp_node = dlist->head;
-	while(i < dlist->size)
+	while (i < dlist->size)
 	{
 		ft_printf("%d\n", temp_node->value);
-		//ft_printf("%d 주소 %p prev %p value %d next %p value %d next next %p value %d\n", temp_node->value, temp_node, temp_node->prev ,temp_node->prev->value, temp_node->next,temp_node->next->value,temp_node->next->next ,temp_node->next->next->value);
 		temp_node = temp_node->next;
 		i++;
 	}
 }
 
-int		dlist_value_check(t_dlist *dlist, int value)
+int	dlist_value_check(t_dlist *dlist, int value)
 {
-	int i;
-	t_node *next_temp;
-	t_node *prev_temp;
+	int		i;
+	t_node	*next_temp;
+	t_node	*prev_temp;
 
 	i = 0;
 	if (dlist == NULL || dlist->head == NULL)

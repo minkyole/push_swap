@@ -13,12 +13,13 @@
 #include "push_swap.h"
 #include "libft.h"
 
-void	reverse_rotate_stack(t_dlist *stack_a, int flag)
+void	reverse_rotate_stack(t_dlist *stack_a, t_command_dlist \
+*stack_command, int flag)
 {
 	if (flag == 1)
-		ft_printf("rra\n");
+		add_last_command_node(stack_command, "rra");
 	else if (flag == 2)
-		ft_printf("rrb\n");
+		add_last_command_node(stack_command, "rrb");
 	else if (flag == 3)
 		;
 	if (stack_a == NULL || stack_a->size <= 1)
@@ -27,11 +28,12 @@ void	reverse_rotate_stack(t_dlist *stack_a, int flag)
 	delete_last_node(stack_a);
 }
 
-void	reverse_rotate_stack_all(t_dlist *stack_a, t_dlist *stack_b)
+void	reverse_rotate_stack_all(t_dlist *stack_a, t_dlist *stack_b, \
+t_command_dlist *stack_command)
 {
-	ft_printf("rrr\n");
+	add_last_command_node(stack_command, "rrr");
 	if (!(stack_a == NULL || stack_a->size <= 1))
-		reverse_rotate_stack(stack_a, 3);
+		reverse_rotate_stack(stack_a, NULL, 3);
 	if (!(stack_b == NULL || stack_b->size <= 1))
-		reverse_rotate_stack(stack_b, 3);
+		reverse_rotate_stack(stack_b, NULL, 3);
 }

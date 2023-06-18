@@ -47,4 +47,7 @@ int		is_str_digit(char *str);
 void	command_input(t_dlist *stack_a, t_dlist *stack_b);
 int		check_command(char *buff, size_t len, t_dlist *stack_a, t_dlist *stack_b);
 void	check_sort(t_dlist *stack_a, t_dlist *stack_b);
+int		add_stack_a(char **argv, int i, t_dlist *stack_a);
+int		check_command_r(char *buff, size_t len, t_dlist *stack_a, t_dlist *stack_b);
+void	error (int flag);
 #endif
