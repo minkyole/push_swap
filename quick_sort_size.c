@@ -14,87 +14,89 @@
 #include "push_swap.h"
 
 int	quick_sort_size_check(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist *stack_command, t_sort_element sort_element)
+t_command_dlist *stack_command, t_sort_var sort_var)
 {
-	if (sort_element.size <= 1)
+	if (sort_var.size <= 1)
 		return (1);
 	else if (quick_sort_size_check_2_3(stack_a, stack_b, \
-	stack_command, sort_element))
+	stack_command, sort_var))
 		return (1);
 	else if (quick_sort_size_check_4(stack_a, stack_b, \
-	stack_command, sort_element))
+	stack_command, sort_var))
 		return (1);
 	else if (quick_sort_size_check_5(stack_a, stack_b, \
-	stack_command, sort_element))
+	stack_command, sort_var))
 		return (1);
 	return (0);
 }
 
 int	quick_sort_size_check_2_3(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist *stack_command, t_sort_element sort_element)
+t_command_dlist *stack_command, t_sort_var sort_var)
 {
-	if (sort_element.size == 2)
+	if (sort_var.size == 2)
 	{
-		if (sort_element.upper % 2 == 1)
-			sort_two_size(stack_a, stack_command, sort_element.flag);
-		else if (sort_element.upper % 2 == 0)
-			sort_two_size(stack_a, stack_command, sort_element.flag + 2);
+		if (sort_var.upper % 2 == 1)
+			sort_two_size(stack_a, stack_command, sort_var.flag);
+		else if (sort_var.upper % 2 == 0)
+			sort_two_size(stack_a, stack_command, sort_var.flag + 2);
 		return (1);
 	}
-	else if (sort_element.size == 3)
+	else if (sort_var.size == 3)
 	{
-		if (stack_a->size == 3 && sort_element.upper % 2 == 1)
-			sort_three_size_upper(stack_a, stack_command, sort_element.flag);
-		else if (stack_a->size == 3 && sort_element.upper % 2 == 0)
-			sort_three_size_lower(stack_a, stack_command, sort_element.flag);
-		else if (sort_element.upper % 2 == 1)
-			quick_sort_three_size_upper(stack_a, stack_b, stack_command, sort_element);
-		else if (sort_element.upper % 2 == 0)
-			quick_sort_three_size_lower(stack_a, stack_b, stack_command, sort_element);
+		if (stack_a->size == 3 && sort_var.upper % 2 == 1)
+			sort_three_size_upper(stack_a, stack_command, sort_var.flag);
+		else if (stack_a->size == 3 && sort_var.upper % 2 == 0)
+			sort_three_size_lower(stack_a, stack_command, sort_var.flag);
+		else if (sort_var.upper % 2 == 1)
+			quick_sort_three_size_upper(stack_a, stack_b, \
+			stack_command, sort_var);
+		else if (sort_var.upper % 2 == 0)
+			quick_sort_three_size_lower(stack_a, stack_b, \
+			stack_command, sort_var);
 		return (1);
 	}
 	return (0);
 }
 
 int	quick_sort_size_check_4(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist *stack_command, t_sort_element sort_element)
+t_command_dlist *stack_command, t_sort_var sort_var)
 {
-	if (sort_element.size == 4)
+	if (sort_var.size == 4)
 	{
-		if (stack_a->size == 4 && sort_element.upper % 2 == 1)
+		if (stack_a->size == 4 && sort_var.upper % 2 == 1)
 			sort_four_size_upper(stack_a, stack_b, stack_command, \
-			sort_element.flag);
-		else if (stack_a->size == 4 && sort_element.upper % 2 == 0)
+			sort_var.flag);
+		else if (stack_a->size == 4 && sort_var.upper % 2 == 0)
 			sort_four_size_lower(stack_a, stack_b, stack_command, \
-			sort_element.flag);
-		else if (sort_element.upper % 2 == 1)
+			sort_var.flag);
+		else if (sort_var.upper % 2 == 1)
 			quick_sort_four_size_upper(stack_a, stack_b, stack_command, \
-			sort_element);
-		else if (sort_element.upper % 2 == 0)
+			sort_var);
+		else if (sort_var.upper % 2 == 0)
 			quick_sort_four_size_lower(stack_a, stack_b, stack_command, \
-			sort_element);
+			sort_var);
 		return (1);
 	}
 	return (0);
 }
 
 int	quick_sort_size_check_5(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist *stack_command, t_sort_element sort_element)
+t_command_dlist *stack_command, t_sort_var sort_var)
 {
-	if (sort_element.size == 5)
+	if (sort_var.size == 5)
 	{
-		if (stack_a->size == 5 && sort_element.upper % 2 == 1)
+		if (stack_a->size == 5 && sort_var.upper % 2 == 1)
 			sort_five_size_upper(stack_a, stack_b, stack_command, \
-			sort_element.flag);
-		else if (stack_a->size == 5 && sort_element.upper % 2 == 0)
+			sort_var);
+		else if (stack_a->size == 5 && sort_var.upper % 2 == 0)
 			sort_five_size_lower(stack_a, stack_b, stack_command, \
-			sort_element.flag);
-		else if (sort_element.upper % 2 == 1)
+			sort_var);
+		else if (sort_var.upper % 2 == 1)
 			quick_sort_five_size_upper(stack_a, stack_b, stack_command, \
-			sort_element);
-		else if (sort_element.upper % 2 == 0)
+			sort_var);
+		else if (sort_var.upper % 2 == 0)
 			quick_sort_five_size_lower(stack_a, stack_b, stack_command, \
-			sort_element);
+			sort_var);
 		return (1);
 	}
 	return (0);

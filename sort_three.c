@@ -74,130 +74,52 @@ t_command_dlist *stack_command, int flag)
 }
 
 void	sort_three_command1(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist *stack_command, t_sort_element sort_element)
+t_command_dlist *stack_command, t_sort_var sort_var)
 {
-	if (sort_element.command == 1)
+	if (sort_var.command == 1)
 	{
 		push_stack(stack_b, stack_a, stack_command, \
-		(sort_element.flag % 2) + 1);
-		swap_stack(stack_a, stack_command, sort_element.flag);
-		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
+		(sort_var.flag % 2) + 1);
+		swap_stack(stack_a, stack_command, sort_var.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_var.flag);
 	}
-	else if (sort_element.command == 2)
-		swap_stack(stack_a, stack_command, sort_element.flag);
-	else if (sort_element.command == 3)
+	else if (sort_var.command == 2)
+		swap_stack(stack_a, stack_command, sort_var.flag);
+	else if (sort_var.command == 3)
 	{
 		push_stack(stack_b, stack_a, stack_command, \
-		(sort_element.flag % 2) + 1);
+		(sort_var.flag % 2) + 1);
 		push_stack(stack_b, stack_a, stack_command, \
-		(sort_element.flag % 2) + 1);
-		rotate_stack(stack_a, stack_command, sort_element.flag);
-		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
-		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
-		reverse_rotate_stack(stack_a, stack_command, sort_element.flag);
+		(sort_var.flag % 2) + 1);
+		rotate_stack(stack_a, stack_command, sort_var.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_var.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_var.flag);
+		reverse_rotate_stack(stack_a, stack_command, sort_var.flag);
 	}
 }
 
 void	sort_three_command2(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist *stack_command, t_sort_element sort_element)
+t_command_dlist *stack_command, t_sort_var sort_var)
 {
-	if (sort_element.command == 4)
+	if (sort_var.command == 4)
 	{
 		push_stack(stack_b, stack_a, stack_command, \
-		(sort_element.flag % 2) + 1);
-		rotate_stack(stack_a, stack_command, sort_element.flag);
-		rotate_stack(stack_a, stack_command, sort_element.flag);
-		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
-		reverse_rotate_stack(stack_a, stack_command, sort_element.flag);
-		reverse_rotate_stack(stack_a, stack_command, sort_element.flag);
+		(sort_var.flag % 2) + 1);
+		rotate_stack(stack_a, stack_command, sort_var.flag);
+		rotate_stack(stack_a, stack_command, sort_var.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_var.flag);
+		reverse_rotate_stack(stack_a, stack_command, sort_var.flag);
+		reverse_rotate_stack(stack_a, stack_command, sort_var.flag);
 	}
-	else if (sort_element.command == 5)
+	else if (sort_var.command == 5)
 	{
 		push_stack(stack_b, stack_a, stack_command, \
-		(sort_element.flag % 2) + 1);
-		swap_stack(stack_a, stack_command, sort_element.flag);
-		rotate_stack(stack_a, stack_command, sort_element.flag);
-		rotate_stack(stack_a, stack_command, sort_element.flag);
-		push_stack(stack_a, stack_b, stack_command, sort_element.flag);
-		reverse_rotate_stack(stack_a, stack_command, sort_element.flag);
-		reverse_rotate_stack(stack_a, stack_command, sort_element.flag);
-	}
-}
-
-void	quick_sort_three_size_upper(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist *stack_command, t_sort_element sort_element)
-{
-	int	first;
-	int	second;
-	int	third;
-
-	first = stack_a->head->value;
-	second = stack_a->head->next->value;
-	third = stack_a->head->next->next->value;
-	if (first < second && second < third)
-		return ;
-	else if (first < second && second > third && first < third)
-	{
-		sort_element.command = 1;
-		sort_three_command1(stack_a, stack_b, stack_command, sort_element);
-	}
-	else if (first > second && second < third && first < third)
-	{
-		sort_element.command = 2;
-		sort_three_command1(stack_a, stack_b, stack_command, sort_element);
-	}
-	else if (first < second && second > third && first > third)
-	{
-		sort_element.command = 3;
-		sort_three_command1(stack_a, stack_b, stack_command, sort_element);
-	}
-	else if (first > second && second < third && first > third)
-	{
-		sort_element.command = 4;
-		sort_three_command2(stack_a, stack_b, stack_command, sort_element);
-	}
-	else if (first > second && second > third)
-	{
-		sort_element.command = 5;
-		sort_three_command2(stack_a, stack_b, stack_command, sort_element);
-	}
-}
-
-void	quick_sort_three_size_lower(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist *stack_command, t_sort_element sort_element)
-{
-	int	first;
-	int	second;
-	int	third;
-
-	first = stack_a->head->value;
-	second = stack_a->head->next->value;
-	third = stack_a->head->next->next->value;
-	if (first > second && second > third)
-		return ;
-	else if (first < second && second > third && first < third)
-	{
-		sort_element.command = 4;
-		sort_three_command2(stack_a, stack_b, stack_command, sort_element);
-	}
-	else if (first > second && second < third && first < third)
-	{
-		sort_element.command = 3;
-		sort_three_command1(stack_a, stack_b, stack_command, sort_element);
-	}
-	else if (first < second && second > third && first > third)
-	{
-		sort_element.command = 2;
-		sort_three_command1(stack_a, stack_b, stack_command, sort_element);
-	}
-	else if (first > second && second < third && first > third)
-	{
-		sort_element.command = 1;
-		sort_three_command1(stack_a, stack_b, stack_command, sort_element);
-	}
-	else if (first < second && second < third)
-	{
-		sort_element.command = 5;
-		sort_three_command2(stack_a, stack_b, stack_command, sort_element);
+		(sort_var.flag % 2) + 1);
+		swap_stack(stack_a, stack_command, sort_var.flag);
+		rotate_stack(stack_a, stack_command, sort_var.flag);
+		rotate_stack(stack_a, stack_command, sort_var.flag);
+		push_stack(stack_a, stack_b, stack_command, sort_var.flag);
+		reverse_rotate_stack(stack_a, stack_command, sort_var.flag);
+		reverse_rotate_stack(stack_a, stack_command, sort_var.flag);
 	}
 }

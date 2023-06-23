@@ -48,7 +48,7 @@ void	mid_quick_sort(int *temp_stack, int left, int right)
 	mid_quick_sort(temp_stack, high + 1, right);
 }
 
-void	init_pivot(t_dlist *stack_a, int size, t_sort_element *sort_element)
+void	init_pivot(t_dlist *stack_a, int size, t_sort_var *sort_var)
 {
 	t_node	*temp_node;
 	int		*temp_stack;
@@ -64,6 +64,6 @@ void	init_pivot(t_dlist *stack_a, int size, t_sort_element *sort_element)
 		idx++;
 	}
 	mid_quick_sort(temp_stack, 0, idx - 1);
-	sort_element->first_pivot = temp_stack[(idx / 3)];
-	sort_element->second_pivot = temp_stack[((idx / 3)) * 2];
+	sort_var->first_pivot = temp_stack[(idx / 3)];
+	sort_var->second_pivot = temp_stack[((idx / 3)) * 2];
 }
