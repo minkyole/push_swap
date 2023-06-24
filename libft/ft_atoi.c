@@ -12,9 +12,9 @@
 
 long long	ft_atoi(const char *str)
 {
-	long long num;
-	int		plus;
-	char	*pstr;
+	long long	num;
+	int			plus;
+	char		*pstr;
 
 	plus = 1;
 	num = 0;

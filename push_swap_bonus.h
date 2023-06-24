@@ -28,7 +28,7 @@ typedef struct s_dlist
 }	t_dlist;
 
 t_dlist	*dlist_init(void);
-t_node *node_init(int value);
+t_node	*node_init(int value);
 void	add_last_node(t_dlist *dlist, int value);
 void	add_first_node(t_dlist *dlist, int value);
 void	delete_last_node(t_dlist *dlist);
@@ -43,11 +43,12 @@ void	rotate_stack_all(t_dlist *stack_a, t_dlist *stack_b);
 void	reverse_rotate_stack(t_dlist *stack_a);
 void	reverse_rotate_stack_all(t_dlist *stack_a, t_dlist *stack_b);
 int		is_str_digit(char *str);
-
 void	command_input(t_dlist *stack_a, t_dlist *stack_b);
-int		check_command(char *buff, size_t len, t_dlist *stack_a, t_dlist *stack_b);
+int		check_command(char *buff, size_t len, t_dlist *stack_a, \
+t_dlist *stack_b);
 void	check_sort(t_dlist *stack_a, t_dlist *stack_b);
 int		add_stack_a(char **argv, int i, t_dlist *stack_a);
-int		check_command_r(char *buff, size_t len, t_dlist *stack_a, t_dlist *stack_b);
-void	error (int flag);
+int		check_command_r(char *buff, size_t len, t_dlist *stack_a, \
+t_dlist *stack_b);
+void	error(int flag);
 #endif
