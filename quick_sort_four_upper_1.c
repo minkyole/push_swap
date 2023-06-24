@@ -13,14 +13,6 @@
 #include "push_swap.h"
 #include "libft.h"
 
-void	four_init(t_five *t, t_dlist *stack_a)
-{
-	t->first = stack_a->head->value;
-	t->second = stack_a->head->next->value;
-	t->third = stack_a->head->next->next->value;
-	t->four = stack_a->head->next->next->next->value;
-}
-
 void	quick_sort_four_size_upper_4(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command, t_sort_var sort_var)
 {
@@ -106,7 +98,7 @@ t_command_dlist *stack_command, t_sort_var sort_var)
 		push_stack(stack_a, stack_b, stack_command, sort_var.flag);
 	}
 	else
-		quick_sort_four_size_upper3(stack_a, stack_b, stack_command, sort_var);
+		quick_sort_four_size_upper_3(stack_a, stack_b, stack_command, sort_var);
 }
 
 void	quick_sort_four_size_upper_1(t_dlist *stack_a, t_dlist *stack_b, \
@@ -136,4 +128,18 @@ t_command_dlist *stack_command, t_sort_var sort_var)
 	}
 	else
 		quick_sort_four_size_upper_2(stack_a, stack_b, stack_command, sort_var);
+}
+
+void	quick_sort_four_size_upper(t_dlist *stack_a, t_dlist *stack_b, \
+t_command_dlist *stack_command, t_sort_var sort_var)
+{
+	t_five	t;
+
+	four_init(&t, stack_a);
+	if (t.first < t.second && t.second < t.third && t.third < t.four)
+		return ;
+	else if (t.four > t.first && t.four > t.second && t.four > t.third)
+		quick_sort_three_size_upper(stack_a, stack_b, stack_command, sort_var);
+	else
+		quick_sort_four_size_upper_1(stack_a, stack_b, stack_command, sort_var);
 }
