@@ -29,23 +29,10 @@ int	is_str_digit(char *str)
 	return (0);
 }
 
-void	error(int flag)
+void	error(void)
 {
-	if (flag == 1)
-	{
-		ft_printf("not digit\n");
-		exit(1);
-	}
-	else if (flag == 2)
-	{
-		ft_printf("input error\n");
-		exit(2);
-	}
-	else if (flag == 3)
-	{
-		ft_printf("Duplicate Value\n");
-		exit(3);
-	}
+	ft_printf("Error\n");
+	exit(1);
 }
 
 int	add_stack_a(char **argv, int i, t_dlist *stack_a)
@@ -59,14 +46,17 @@ int	add_stack_a(char **argv, int i, t_dlist *stack_a)
 	while (temp_arr[j])
 	{
 		if (is_str_digit(temp_arr[j]))
-			error(1);
+			error();
 		temp_value = ft_atoi(temp_arr[j]);
 		if (temp_value > 2147483647 || temp_value < -2147483648)
-			error(2);
+			error();
 		if (dlist_value_check(stack_a, temp_value))
-			error(3);
+			error();
 		add_last_node(stack_a, temp_value);
+		free(temp_arr[j]);
 		j++;
 	}
+	free(temp_arr[j]);
+	free(temp_arr);
 	return (j);
 }

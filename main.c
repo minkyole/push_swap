@@ -27,10 +27,14 @@ int	main(int argc, char **argv)
 	while (i < argc)
 	{
 		if (add_stack_a(argv, i, stack_a) == 0)
-			error(1);
+			error();
 		i++;
 	}
 	sort_stack(stack_a, stack_b, stack_command);
 	check_combine_command(stack_command);
 	dlist_command_print(stack_command);
+	delete_all_node(&stack_a);
+	delete_all_node(&stack_b);
+	delete_command_all_node(&stack_command);
+	return (0);
 }

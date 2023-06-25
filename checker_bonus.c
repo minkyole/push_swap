@@ -25,9 +25,12 @@ int	main(int argc, char **argv)
 	while (++i < argc)
 	{
 		if (add_stack_a(argv, i, stack_a) == 0)
-			error(1);
+			error();
 	}
 	command_input(stack_a, stack_b);
+	delete_all_node(&stack_a);
+	delete_all_node(&stack_b);
+	return (0);
 }
 
 int	check_command(char *buff, size_t len, t_dlist *stack_a, t_dlist *stack_b)
@@ -71,9 +74,9 @@ void	command_input(t_dlist *stack_a, t_dlist *stack_b)
 			break ;
 		len = ft_strlen(buff);
 		if (len > 4)
-			error(2);
+			error();
 		if (check_command(buff, len, stack_a, stack_b))
-			error(2);
+			error();
 		free(buff);
 	}
 	check_sort(stack_a, stack_b);

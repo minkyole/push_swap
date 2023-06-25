@@ -10,33 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-long long	ft_atoi(const char *str)
+long long	ft_atoi(char *str)
 {
 	long long	num;
 	int			plus;
-	char		*pstr;
 
 	plus = 1;
 	num = 0;
-	pstr = (char *)str;
-	while ((*pstr >= 9 && *pstr <= 13) || *pstr == 32)
-		pstr++;
-	if (*pstr == '+' || *pstr == '-')
+	while ((*str >= 9 && *str <= 13) || *str == 32)
+		str++;
+	if (*str == '+' || *str == '-')
 	{
-		if (*pstr == '-')
+		if (*str == '-')
 			plus = plus * -1;
-		pstr++;
+		str++;
 	}
-	if (!(*pstr >= '0' && *pstr <= '9'))
+	if (!(*str >= '0' && *str <= '9'))
 		return (2147483648);
-	while (*pstr >= '0' && *pstr <= '9')
+	while (*str >= '0' && *str <= '9')
 	{
-		num = ((num * 10) + (*pstr - '0'));
+		num = ((num * 10) + (*str - '0'));
 		if (num > 2147483647 || num < -2147483648)
 			return (num);
-		pstr++;
+		str++;
 	}
-	if (*pstr != '\0')
+	if (*str != '\0')
 		return (2147483648);
 	return (num * plus);
 }

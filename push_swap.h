@@ -95,7 +95,7 @@ void			delete_first_node(t_dlist *dlist);
 void			dlist_print(t_dlist *dlist);
 int				dlist_value_check(t_dlist *dlist, int value);
 int				is_str_digit(char *str);
-void			error(int flag);
+void			error(void);
 int				add_stack_a(char **argv, int i, t_dlist *stack_a);
 void			stack_div(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command, t_sort_var *sort_var);
@@ -231,4 +231,6 @@ void			quick_sort_b_down(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command, t_sort_var sort_var);
 void			quick_sort_a_down(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command, t_sort_var sort_var);
+void			delete_all_node(t_dlist	**dlist);
+void			delete_command_all_node(t_command_dlist	**dlist);
 #endif

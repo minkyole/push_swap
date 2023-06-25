@@ -13,6 +13,26 @@
 #include "libft.h"
 #include "push_swap_bonus.h"
 
+void	delete_all_node(t_dlist	**dlist)
+{
+	t_node	*free_temp;
+	t_node	*next_temp;
+	int		i;
+
+	i = 0;
+	if (dlist == NULL)
+		return ;
+	next_temp = (*dlist)->head;
+	while (i < (*dlist)->size)
+	{
+		free_temp = next_temp;
+		next_temp = next_temp->next;
+		free(free_temp);
+		i++;
+	}
+	free(*dlist);
+}
+
 void	delete_last_node(t_dlist *dlist)
 {
 	t_node	*temp_node;

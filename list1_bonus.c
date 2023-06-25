@@ -18,6 +18,8 @@ t_dlist	*dlist_init(void)
 	t_dlist	*new_list;
 
 	new_list = malloc(sizeof(t_dlist));
+	if (!new_list)
+		error();
 	new_list->head = NULL;
 	new_list->size = 0;
 	return (new_list);
@@ -28,6 +30,8 @@ t_node	*node_init(int value)
 	t_node	*new_node;
 
 	new_node = malloc(sizeof(t_node));
+	if (!new_node)
+		error();
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	new_node->value = value;

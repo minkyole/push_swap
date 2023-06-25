@@ -57,6 +57,8 @@ void	init_pivot(t_dlist *stack_a, int size, t_sort_var *sort_var)
 	idx = 0;
 	temp_node = stack_a->head;
 	temp_stack = malloc(sizeof(int) * size);
+	if (temp_stack == NULL)
+		error();
 	while (idx < size)
 	{
 		temp_stack[idx] = temp_node->value;
@@ -66,4 +68,5 @@ void	init_pivot(t_dlist *stack_a, int size, t_sort_var *sort_var)
 	mid_quick_sort(temp_stack, 0, idx - 1);
 	sort_var->first_pivot = temp_stack[(idx / 3)];
 	sort_var->second_pivot = temp_stack[((idx / 3)) * 2];
+	free(temp_stack);
 }
