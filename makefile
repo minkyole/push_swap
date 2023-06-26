@@ -32,6 +32,7 @@ clean:
 
 fclean:
 	$(MAKE) clean
+	rm -f $(BNAME)
 	rm -f $(NAME)
 
 re:

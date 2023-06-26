@@ -57,6 +57,7 @@ typedef struct s_sort_var
 	int	current_up_cnt;
 	int	next_up_cnt;
 	int	next_down_cnt;
+	int	rrr_cnt;
 	int	first_pivot;
 	int	second_pivot;
 	int	cnt;
@@ -233,4 +234,8 @@ void			quick_sort_a_down(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command, t_sort_var sort_var);
 void			delete_all_node(t_dlist	**dlist);
 void			delete_command_all_node(t_command_dlist	**dlist);
+void			stack_rrr(t_dlist *stack_a, t_dlist *stack_b, \
+t_command_dlist *stack_command, t_sort_var *sort_var);
+void			sort_var_init(t_sort_var *sort_var, \
+t_sort_var *next_sort_var, int flag);
 #endif
