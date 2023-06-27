@@ -71,9 +71,8 @@ void	init_pivot(t_dlist *stack_a, int size, t_sort_var *sort_var)
 	free(temp_stack);
 }
 
-void	sort_var_init(t_sort_var *sort_var, t_sort_var *next_sort_var, int flag)
+void	sort_var_init(t_sort_var *sort_var, int flag)
 {
-	next_sort_var->cnt = -1;
 	sort_var->current_up_cnt = 0;
 	sort_var->next_up_cnt = 0;
 	sort_var->next_down_cnt = 0;

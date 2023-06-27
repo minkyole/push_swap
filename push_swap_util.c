@@ -42,6 +42,8 @@ int	add_stack_a(char **argv, int i, t_dlist *stack_a)
 	long long	temp_value;
 
 	temp_arr = ft_split(argv[i], ' ');
+	if (!temp_arr)
+		error();
 	j = 0;
 	while (temp_arr[j])
 	{

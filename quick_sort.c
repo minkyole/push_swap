@@ -18,12 +18,11 @@ void	quick_sort_a_first(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist \
 {
 	t_sort_var	next_sort_var;
 
-	sort_var_init(&sort_var, &next_sort_var, 1);
+	sort_var_init(&sort_var, 1);
 	if (quick_sort_size_check(stack_a, stack_b, stack_command, sort_var))
 		return ;
 	stack_div_first(stack_a, stack_b, stack_command, &sort_var);
-	next_sort_var.size = sort_var.size - \
-	sort_var.next_up_cnt - sort_var.next_down_cnt;
+	next_sort_var.size = sort_var.current_up_cnt;
 	next_sort_var.upper = sort_var.upper;
 	quick_sort_a(stack_a, stack_b, stack_command, next_sort_var);
 	next_sort_var.size = sort_var.next_up_cnt;
@@ -38,15 +37,12 @@ void	quick_sort_a(t_dlist *stack_a, t_dlist *stack_b, t_command_dlist \
 {
 	t_sort_var	next_sort_var;
 
-	sort_var_init(&sort_var, &next_sort_var, 1);
+	sort_var_init(&sort_var, 1);
 	if (quick_sort_size_check(stack_a, stack_b, stack_command, sort_var))
 		return ;
-	stack_div(stack_a, stack_b, stack_command, &sort_var);
+	stack_div_a(stack_a, stack_b, stack_command, &sort_var);
 	stack_rrr(stack_a, stack_b, stack_command, &sort_var);
-	sort_var.command = 1;
-	stack_restore(stack_a, stack_b, stack_command, &sort_var);
-	next_sort_var.size = sort_var.size - \
-	sort_var.next_up_cnt - sort_var.next_down_cnt;
+	next_sort_var.size = sort_var.current_up_cnt;
 	next_sort_var.upper = sort_var.upper;
 	quick_sort_a(stack_a, stack_b, stack_command, next_sort_var);
 	next_sort_var.size = sort_var.next_up_cnt;
@@ -61,20 +57,17 @@ t_command_dlist *stack_command, t_sort_var sort_var)
 {
 	t_sort_var	next_sort_var;
 
-	sort_var_init(&sort_var, &next_sort_var, 2);
+	sort_var_init(&sort_var, 2);
 	if (quick_sort_size_check(stack_b, stack_a, stack_command, sort_var))
 		return ;
-	stack_div(stack_b, stack_a, stack_command, &sort_var);
+	stack_div_b(stack_b, stack_a, stack_command, &sort_var);
 	next_sort_var.size = sort_var.next_up_cnt;
 	next_sort_var.upper = sort_var.upper + 1;
 	quick_sort_a(stack_a, stack_b, stack_command, next_sort_var);
-	stack_rrr(stack_a, stack_b, stack_command, &sort_var);
-	sort_var.command = 1;
-	stack_restore(stack_b, stack_a, stack_command, &sort_var);
+	stack_rrr(stack_b, stack_a, stack_command, &sort_var);
 	next_sort_var.size = sort_var.next_down_cnt;
 	quick_sort_a(stack_a, stack_b, stack_command, next_sort_var);
-	next_sort_var.size = sort_var.size - \
-	sort_var.next_up_cnt - sort_var.next_down_cnt;
+	next_sort_var.size = sort_var.current_up_cnt;
 	next_sort_var.upper = sort_var.upper;
 	quick_sort_b_push_a(stack_a, stack_b, stack_command, next_sort_var);
 }

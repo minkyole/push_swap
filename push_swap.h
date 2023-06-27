@@ -60,7 +60,6 @@ typedef struct s_sort_var
 	int	rrr_cnt;
 	int	first_pivot;
 	int	second_pivot;
-	int	cnt;
 }	t_sort_var;
 
 void			swap_stack(t_dlist	*stack_a, t_command_dlist *stack_command, \
@@ -98,81 +97,15 @@ int				dlist_value_check(t_dlist *dlist, int value);
 int				is_str_digit(char *str);
 void			error(void);
 int				add_stack_a(char **argv, int i, t_dlist *stack_a);
-void			stack_div(t_dlist *stack_a, t_dlist *stack_b, \
+void			stack_div_b(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command, t_sort_var *sort_var);
-void			stack_div_command1(t_dlist *stack_a, t_dlist *stack_b, \
+void			stack_div_a(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command, t_sort_var *sort_var);
-void			stack_div_command2(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist *stack_command, t_sort_var *sort_var);
-void			stack_restore(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist *stack_command, t_sort_var *sort_var);
-void			quick_sort_four_size_lower(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_lower_1(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_lower_2(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_lower_3(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_lower_4(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_lower_5(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_lower_6(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_lower_7(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_lower_8(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_lower_9(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_lower_10(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_lower_11(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_lower_12(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_lower_13(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_upper(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_upper_1(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_upper_2(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_upper_3(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_upper_4(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_upper_5(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_upper_6(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_upper_7(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_upper_8(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_upper_9(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);	
-void			quick_sort_four_size_upper_10(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_upper_11(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_upper_12(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_upper_13(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_four_size_upper_14(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
 int				quick_sort_size_check(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command, t_sort_var sort_var);
 int				quick_sort_size_check_2(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command, t_sort_var sort_var);
 int				quick_sort_size_check_3(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist *stack_command, t_sort_var sort_var);
-int				quick_sort_size_check_4(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist *stack_command, t_sort_var sort_var);
-int				quick_sort_size_check_5(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command, t_sort_var sort_var);
 void			sort_two_size(t_dlist *stack_a, t_command_dlist \
 *stack_command, int flag);
@@ -212,14 +145,6 @@ void			sort_five_command_upper(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command, t_sort_var sort_var);
 void			sort_five_command_upper_2(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_five_command2(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_five_command1(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_five_size_lower(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_five_size_upper(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist *stack_command, t_sort_var sort_var);
 void			ft_swap(int *a, int *b);
 void			mid_quick_sort(int *temp_stack, int left, int right);
 void			init_pivot(t_dlist *stack_a, int size, t_sort_var *sort_var);
@@ -233,13 +158,11 @@ void			delete_all_node(t_dlist	**dlist);
 void			delete_command_all_node(t_command_dlist	**dlist);
 void			stack_rrr(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command, t_sort_var *sort_var);
-void			sort_var_init(t_sort_var *sort_var, \
-t_sort_var *next_sort_var, int flag);
+void			sort_var_init(t_sort_var *sort_var, int flag);
 void			stack_div_first(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command, t_sort_var *sort_var);
 void			quick_sort_a_first(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist \
-*stack_command, t_sort_var sort_var);
+t_command_dlist *stack_command, t_sort_var sort_var);
 void			three_init(t_five *t, t_dlist *stack_a);
 void			four_init(t_five *t, t_dlist *stack_a);
 #endif
