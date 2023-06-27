@@ -28,12 +28,6 @@ t_command_dlist *stack_command, t_sort_var sort_var)
 	else if (quick_sort_size_check_3(stack_a, stack_b, \
 	stack_command, sort_var))
 		return (1);
-	else if (quick_sort_size_check_4(stack_a, stack_b, \
-	stack_command, sort_var))
-		return (1);
-	else if (quick_sort_size_check_5(stack_a, stack_b, \
-	stack_command, sort_var))
-		return (1);
 	return (0);
 }
 
@@ -59,23 +53,26 @@ t_command_dlist *stack_command, t_sort_var sort_var)
 int	quick_sort_size_check_3(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command, t_sort_var sort_var)
 {
+	t_five	t;
+
 	if (sort_var.size == 3)
 	{
 		if (stack_a->size == 3 && sort_var.upper % 2 == 1)
 			sort_three_size_upper(stack_a, stack_command, sort_var.flag);
 		else if (stack_a->size == 3 && sort_var.upper % 2 == 0)
+		{
 			sort_three_size_lower(stack_a, stack_command, sort_var.flag);
+			push_stack(stack_b, stack_a, stack_command, 1);
+			push_stack(stack_b, stack_a, stack_command, 1);
+			push_stack(stack_b, stack_a, stack_command, 1);
+		}
 		else if (sort_var.upper % 2 == 1)
 			quick_sort_three_size_upper(stack_a, stack_b, \
 			stack_command, sort_var);
 		else if (sort_var.upper % 2 == 0)
-			quick_sort_three_size_lower(stack_a, stack_b, \
-			stack_command, sort_var);
-		if (sort_var.flag == 2)
 		{
-			push_stack(stack_b, stack_a, stack_command, 1);
-			push_stack(stack_b, stack_a, stack_command, 1);
-			push_stack(stack_b, stack_a, stack_command, 1);
+			three_init(&t, stack_a);
+			quick_sort_three_size_lower(stack_a, stack_b, stack_command, t);
 		}
 		return (1);
 	}

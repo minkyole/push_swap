@@ -189,10 +189,9 @@ t_command_dlist *stack_command, t_sort_var sort_var);
 void			quick_sort_three_size_upper2(t_dlist *stack_a, \
 t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
 void			quick_sort_three_size_lower(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist *stack_command, t_sort_var sort_var);
+t_command_dlist *stack_command, t_five t);
 void			quick_sort_three_size_lower2(t_dlist *stack_a, \
-t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
-void			four_init(t_five *t, t_dlist *stack_a);
+t_dlist *stack_b, t_command_dlist *stack_command, t_five t);
 void			sort_four_size_upper(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command, int flag);
 void			sort_four_size_upper_2(t_dlist *stack_a, t_dlist *stack_b, \
@@ -241,4 +240,6 @@ t_command_dlist *stack_command, t_sort_var *sort_var);
 void			quick_sort_a_first(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist \
 *stack_command, t_sort_var sort_var);
+void			three_init(t_five *t, t_dlist *stack_a);
+void			four_init(t_five *t, t_dlist *stack_a);
 #endif

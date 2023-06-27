@@ -111,7 +111,7 @@ t_command_dlist *stack_command, t_sort_var sort_var)
 	if (t.first > t.second && t.second > t.third && t.third > t.four)
 		return ;
 	else if (t.four < t.first && t.four < t.second && t.four < t.third)
-		quick_sort_three_size_lower(stack_a, stack_b, stack_command, sort_var);
+		quick_sort_three_size_lower(stack_a, stack_b, stack_command, t);
 	else
 		quick_sort_four_size_lower_1(stack_a, stack_b, stack_command, sort_var);
 }
