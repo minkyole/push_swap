@@ -16,7 +16,7 @@ NAME = push_swap
 BNAME = checker
 LIBFT = ./libft/libft.a
 LIBFT_DIR = libft
-SRCS = list1.c list2.c command1.c command2.c main.c push_swap_util.c sort.c list_command1.c list_command2.c sort_two.c sort_three.c sort_util1.c sort_four.c sort_five.c quick_sort_div.c quick_sort_size.c sort_three_2.c sort_five_2.c quick_sort_four_lower_1.c quick_sort_four_lower_2.c quick_sort_four_upper_1.c quick_sort_four_upper_2.c quick_sort_four_upper_3.c quick_sort_four_lower_3.c
+SRCS = list1.c list2.c command1.c command2.c main.c push_swap_util.c sort.c list_command1.c list_command2.c sort_two.c sort_three.c sort_util1.c sort_four.c sort_five.c quick_sort_div.c quick_sort_size.c sort_three_2.c sort_five_2.c quick_sort_four_lower_1.c quick_sort_four_lower_2.c quick_sort_four_upper_1.c quick_sort_four_upper_2.c quick_sort_four_upper_3.c quick_sort_four_lower_3.c quick_sort.c quick_sort_restore.c
 BSRCS = checker_bonus.c list1_bonus.c list2_bonus.c command1_bonus.c command2_bonus.c checker_util_bonus.c
 OBJS = $(SRCS:.c=.o)
 BOBJS = $(BSRCS:.c=.o)

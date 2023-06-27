@@ -238,4 +238,9 @@ void			stack_rrr(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command, t_sort_var *sort_var);
 void			sort_var_init(t_sort_var *sort_var, \
 t_sort_var *next_sort_var, int flag);
+void			stack_div_first(t_dlist *stack_a, t_dlist *stack_b, \
+t_command_dlist *stack_command, t_sort_var *sort_var);
+void			quick_sort_a_first(t_dlist *stack_a, t_dlist *stack_b, \
+t_command_dlist \
+*stack_command, t_sort_var sort_var);
 #endif
