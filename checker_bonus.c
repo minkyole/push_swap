@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minkyole <minkyole@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: minkyole <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 20:27:48 by minkyole          #+#    #+#             */
-/*   Updated: 2023/05/31 20:27:49 by minkyole         ###   ########.fr       */
+/*   Created: 2023/06/27 20:26:51 by minkyole          #+#    #+#             */
+/*   Updated: 2023/06/27 20:26:54 by minkyole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	main(int argc, char **argv)
 	int			i;
 
 	i = 0;
+	if (argc == 1)
+		return (1);
 	stack_a = dlist_init();
 	stack_b = dlist_init();
 	while (++i < argc)

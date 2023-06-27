@@ -50,7 +50,7 @@ int	add_stack_a(char **argv, int i, t_dlist *stack_a)
 		if (is_str_digit(temp_arr[j]))
 			error();
 		temp_value = ft_atoi(temp_arr[j]);
-		if (temp_value > 2147483647 || temp_value < -2147483648)
+		if (temp_value > 2147483647 || temp_value < -2147483649)
 			error();
 		if (dlist_value_check(stack_a, temp_value))
 			error();

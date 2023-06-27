@@ -30,7 +30,7 @@ long long	ft_atoi(char *str)
 	while (*str >= '0' && *str <= '9')
 	{
 		num = ((num * 10) + (*str - '0'));
-		if (num > 2147483647 || num < -2147483648)
+		if ((plus == 1 && num > 2147483647) || num > 2147483648)
 			return (num);
 		str++;
 	}

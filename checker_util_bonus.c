@@ -40,11 +40,13 @@ int	check_command_r(char *buff, size_t len, t_dlist *stack_a, t_dlist *stack_b)
 
 int	add_stack_a(char **argv, int i, t_dlist *stack_a)
 {
-	char	**temp_arr;
-	int		j;
-	int		temp_value;
+	char		**temp_arr;
+	int			j;
+	long long	temp_value;
 
 	temp_arr = ft_split(argv[i], ' ');
+	if (!temp_arr)
+		error();
 	j = 0;
 	while (temp_arr[j])
 	{
