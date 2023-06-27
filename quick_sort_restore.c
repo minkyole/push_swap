@@ -18,7 +18,7 @@ t_command_dlist *stack_command, t_sort_var *sort_var)
 {
 	if (sort_var->command == 1)
 	{
-		while (sort_var->upper != 1 && \
+		while (sort_var->upper != 0 && \
 		sort_var->current_up_cnt - sort_var->rrr_cnt > 0)
 		{
 			reverse_rotate_stack(stack_a, stack_command, sort_var->flag);
@@ -42,7 +42,7 @@ void	stack_rrr(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command, t_sort_var *sort_var)
 {
 	sort_var->rrr_cnt = 0;
-	while (sort_var->upper != 1 && \
+	while (sort_var->upper != 0 && \
 	sort_var->current_up_cnt > sort_var->rrr_cnt && \
 	sort_var->next_down_cnt > sort_var->rrr_cnt)
 	{

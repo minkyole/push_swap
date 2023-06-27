@@ -166,7 +166,9 @@ void			quick_sort_four_size_upper_14(t_dlist *stack_a, \
 t_dlist *stack_b, t_command_dlist *stack_command, t_sort_var sort_var);
 int				quick_sort_size_check(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command, t_sort_var sort_var);
-int				quick_sort_size_check_2_3(t_dlist *stack_a, t_dlist *stack_b, \
+int				quick_sort_size_check_2(t_dlist *stack_a, t_dlist *stack_b, \
+t_command_dlist *stack_command, t_sort_var sort_var);
+int				quick_sort_size_check_3(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command, t_sort_var sort_var);
 int				quick_sort_size_check_4(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command, t_sort_var sort_var);
@@ -226,11 +228,7 @@ void			sort_stack(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command);
 void			quick_sort_a(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_b_up(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_b_down(t_dlist *stack_a, t_dlist *stack_b, \
-t_command_dlist *stack_command, t_sort_var sort_var);
-void			quick_sort_a_down(t_dlist *stack_a, t_dlist *stack_b, \
+void			quick_sort_b_push_a(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command, t_sort_var sort_var);
 void			delete_all_node(t_dlist	**dlist);
 void			delete_command_all_node(t_command_dlist	**dlist);
