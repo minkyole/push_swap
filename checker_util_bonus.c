@@ -21,17 +21,17 @@ void	error(void)
 
 int	check_command_r(char *buff, size_t len, t_dlist *stack_a, t_dlist *stack_b)
 {
-	if (buff[1] == 'a')
+	if (buff[1] == 'a' && buff[2] == '\n')
 		rotate_stack(stack_a);
-	else if (buff[1] == 'b')
+	else if (buff[1] == 'b' && buff[2] == '\n')
 		rotate_stack(stack_b);
-	else if (buff[1] == 'r' && len == 3)
+	else if (buff[1] == 'r' && buff[2] == '\n')
 		rotate_stack_all(stack_a, stack_b);
-	else if (len == 4 && buff[1] == 'r' && buff[2] == 'a')
+	else if (buff[1] == 'r' && buff[2] == 'a' && buff[3] == '\n')
 		reverse_rotate_stack(stack_a);
-	else if (len == 4 && buff[1] == 'r' && buff[2] == 'b')
+	else if (len == 4 && buff[1] == 'r' && buff[2] == 'b' && buff[3] == '\n')
 		reverse_rotate_stack(stack_b);
-	else if (len == 4 && buff[1] == 'r' && buff[2] == 'r')
+	else if (len == 4 && buff[1] == 'r' && buff[2] == 'r' && buff[3] == '\n')
 		reverse_rotate_stack_all(stack_a, stack_b);
 	else
 		return (1);

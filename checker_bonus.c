@@ -41,26 +41,28 @@ int	check_command(char *buff, size_t len, t_dlist *stack_a, t_dlist *stack_b)
 		return (1);
 	else if (buff[0] == 's')
 	{
-		if (buff[1] == 'a')
+		if (buff[1] == 'a' && buff[2] == '\n')
 			swap_stack(stack_a);
-		else if (buff[1] == 'b')
+		else if (buff[1] == 'b' && buff[2] == '\n')
 			swap_stack(stack_b);
-		else if (buff[1] == 's')
+		else if (buff[1] == 's' && buff[2] == '\n')
 			swap_stack_all(stack_a, stack_b);
 		else
 			return (1);
 	}
 	else if (buff[0] == 'p')
 	{
-		if (buff[1] == 'a')
+		if (buff[1] == 'a' && buff[2] == '\n')
 			push_stack(stack_a, stack_b);
-		else if (buff[1] == 'b')
+		else if (buff[1] == 'b' && buff[2] == '\n')
 			push_stack(stack_b, stack_a);
 		else
 			return (1);
 	}
 	else if (buff[0] == 'r')
 		return (check_command_r(buff, len, stack_a, stack_b));
+	else
+		return (1);
 	return (0);
 }
 
