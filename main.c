@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 			error();
 		i++;
 	}
+	is_sort(stack_a);
 	sort_stack(stack_a, stack_b, stack_command);
 	check_combine_command(stack_command);
 	dlist_command_print(stack_command);

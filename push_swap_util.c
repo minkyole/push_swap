@@ -62,3 +62,20 @@ int	add_stack_a(char **argv, int i, t_dlist *stack_a)
 	free(temp_arr);
 	return (j);
 }
+
+void	is_sort(t_dlist *stack_a)
+{
+	int		i;
+	t_node	*temp_node;
+
+	temp_node = stack_a->head;
+	i = 1;
+	while (i < stack_a->size)
+	{
+		if (temp_node->value > temp_node->next->value)
+			return ;
+		temp_node = temp_node->next;
+		++i;
+	}
+	exit (0);
+}

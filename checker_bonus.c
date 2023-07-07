@@ -6,7 +6,7 @@
 /*   By: minkyole <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 20:26:51 by minkyole          #+#    #+#             */
-/*   Updated: 2023/06/27 20:26:54 by minkyole         ###   ########.fr       */
+/*   Updated: 2023/07/04 22:43:24 by minkyole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,7 @@ int	main(int argc, char **argv)
 
 int	check_command(char *buff, size_t len, t_dlist *stack_a, t_dlist *stack_b)
 {
-	if (len <= 2)
-		return (1);
-	else if (buff[0] == 's')
+	if (buff[0] == 's')
 	{
 		if (buff[1] == 'a' && buff[2] == '\n')
 			swap_stack(stack_a);
@@ -77,7 +75,7 @@ void	command_input(t_dlist *stack_a, t_dlist *stack_b)
 		if (buff == NULL)
 			break ;
 		len = ft_strlen(buff);
-		if (len > 4)
+		if (len > 4 || len <= 2)
 			error();
 		if (check_command(buff, len, stack_a, stack_b))
 			error();

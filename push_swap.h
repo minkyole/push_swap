@@ -165,4 +165,5 @@ void			quick_sort_a_first(t_dlist *stack_a, t_dlist *stack_b, \
 t_command_dlist *stack_command, t_sort_var sort_var);
 void			three_init(t_five *t, t_dlist *stack_a);
 void			four_init(t_five *t, t_dlist *stack_a);
+void			is_sort(t_dlist *stack_a);
 #endif
